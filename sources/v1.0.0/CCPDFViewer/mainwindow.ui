@@ -1,0 +1,750 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1073</width>
+    <height>676</height>
+   </rect>
+  </property>
+  <property name="focusPolicy">
+   <enum>Qt::NoFocus</enum>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QWidget" name="pdf_view_frame" native="true">
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="CCPDF_View" name="pdf_view" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>800</width>
+           <height>500</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QToolBox" name="hyperWidget">
+      <property name="minimumSize">
+       <size>
+        <width>100</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>300</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="currentIndex">
+       <number>4</number>
+      </property>
+      <widget class="QWidget" name="historyPage">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>231</width>
+         <height>418</height>
+        </rect>
+       </property>
+       <attribute name="icon">
+        <iconset resource="icons.qrc">
+         <normaloff>:/windowIcon/icon/history.ico</normaloff>:/windowIcon/icon/history.ico</iconset>
+       </attribute>
+       <attribute name="label">
+        <string>浏览记录</string>
+       </attribute>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <widget class="QWidget" name="widget_filehist" native="true">
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <item>
+            <widget class="QTableWidget" name="tableWidget_filehist"/>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="OCRPage">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>231</width>
+         <height>418</height>
+        </rect>
+       </property>
+       <attribute name="icon">
+        <iconset resource="icons.qrc">
+         <normaloff>:/toolbar_icon/pic/OCR_current.png</normaloff>:/toolbar_icon/pic/OCR_current.png</iconset>
+       </attribute>
+       <attribute name="label">
+        <string>OCR识别</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
+         <widget class="QPushButton" name="btn_configMission">
+          <property name="minimumSize">
+           <size>
+            <width>200</width>
+            <height>50</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>打开OCR配置</string>
+          </property>
+          <property name="icon">
+           <iconset resource="icons.qrc">
+            <normaloff>:/toolbar_icon/pic/ocr_settings.png</normaloff>:/toolbar_icon/pic/ocr_settings.png</iconset>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btn_startMissionDirect">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>200</width>
+            <height>50</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>开始OCR识别</string>
+          </property>
+          <property name="icon">
+           <iconset resource="icons.qrc">
+            <normaloff>:/toolbar_icon/pic/OCR_current.png</normaloff>:/toolbar_icon/pic/OCR_current.png</iconset>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btn_clip">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>50</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>将识别内容复制到剪贴板中</string>
+          </property>
+          <property name="icon">
+           <iconset resource="icons.qrc">
+            <normaloff>:/toolbar_icon/pic/clipboard.png</normaloff>:/toolbar_icon/pic/clipboard.png</iconset>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPlainTextEdit" name="ocrResultTextEdit"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>231</width>
+         <height>418</height>
+        </rect>
+       </property>
+       <attribute name="icon">
+        <iconset resource="icons.qrc">
+         <normaloff>:/toolbar_icon/pic/notebookOpenAdd.png</normaloff>:/toolbar_icon/pic/notebookOpenAdd.png</iconset>
+       </attribute>
+       <attribute name="label">
+        <string>笔记</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_5">
+        <item>
+         <widget class="QWidget" name="widget" native="true">
+          <layout class="QGridLayout" name="gridLayout">
+           <item row="1" column="1">
+            <widget class="QPushButton" name="btn_bindNote">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>50</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>绑定本地笔记</string>
+             </property>
+             <property name="checkable">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QPushButton" name="btn_switch">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>50</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>更换绑定的笔记</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QPushButton" name="btn_addOrOpenNotes">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>50</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>创建笔记</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QPushButton" name="btn_releaseNotes">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>50</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>解绑笔记</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0" colspan="2">
+            <widget class="QLineEdit" name="noteBookPathEdit">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QWidget" name="widget_2" native="true">
+          <layout class="QVBoxLayout" name="verticalLayout_4">
+           <item>
+            <widget class="QPushButton" name="btn_addNoteHandle">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>50</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>添加笔记工具</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btn_checkHandle">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>50</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>查看当前的笔记工具配置</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btn_removeBtnHandle">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>50</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>移除笔记工具</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="bookModelPage">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>231</width>
+         <height>418</height>
+        </rect>
+       </property>
+       <attribute name="icon">
+        <iconset resource="icons.qrc">
+         <normaloff>:/windowIcon/icon/booklib.ico</normaloff>:/windowIcon/icon/booklib.ico</iconset>
+       </attribute>
+       <attribute name="label">
+        <string>书库目录</string>
+       </attribute>
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
+        <item>
+         <widget class="QTreeView" name="treeView_library"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="theme_page">
+       <attribute name="icon">
+        <iconset resource="icons.qrc">
+         <normaloff>:/toolbar_icon/pic/styleSwitch.png</normaloff>:/toolbar_icon/pic/styleSwitch.png</iconset>
+       </attribute>
+       <attribute name="label">
+        <string>主题</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_7">
+        <item>
+         <widget class="QWidget" name="theme_btns_widget" native="true">
+          <layout class="QVBoxLayout" name="verticalLayout_6">
+           <item>
+            <widget class="QPushButton" name="btn_randStyle">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>50</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>随机的主题</string>
+             </property>
+             <property name="icon">
+              <iconset resource="icons.qrc">
+               <normaloff>:/toolbar_icon/pic/styleSwitch.png</normaloff>:/toolbar_icon/pic/styleSwitch.png</iconset>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btn_setClearTheme">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>50</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>还原为默认的主题</string>
+             </property>
+             <property name="icon">
+              <iconset resource="icons.qrc">
+               <normaloff>:/toolbar_icon/pic/styleSwitch.png</normaloff>:/toolbar_icon/pic/styleSwitch.png</iconset>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="EditPage">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>231</width>
+         <height>418</height>
+        </rect>
+       </property>
+       <attribute name="icon">
+        <iconset resource="icons.qrc">
+         <normaloff>:/toolbar_icon/pic/editPDF.png</normaloff>:/toolbar_icon/pic/editPDF.png</iconset>
+       </attribute>
+       <attribute name="label">
+        <string>编辑</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QLabel" name="image_label">
+          <property name="autoFillBackground">
+           <bool>true</bool>
+          </property>
+          <property name="text">
+           <string>没有打开的PDF</string>
+          </property>
+          <property name="scaledContents">
+           <bool>true</bool>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btn_edit_current">
+          <property name="minimumSize">
+           <size>
+            <width>200</width>
+            <height>100</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>编辑</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1073</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="file_Menu">
+    <property name="title">
+     <string>文件</string>
+    </property>
+    <addaction name="action_loadPDF"/>
+    <addaction name="action_setLibraryPath"/>
+    <addaction name="separator"/>
+    <addaction name="action_clearHistory"/>
+   </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>放缩</string>
+    </property>
+    <addaction name="action_zoomin"/>
+    <addaction name="action_zoomout"/>
+   </widget>
+   <widget class="QMenu" name="menu_3">
+    <property name="title">
+     <string>视图</string>
+    </property>
+    <addaction name="action_show_or_hide_advamced"/>
+    <addaction name="action_singlePage"/>
+    <addaction name="action_multiPage"/>
+   </widget>
+   <widget class="QMenu" name="menuOCR">
+    <property name="title">
+     <string>OCR</string>
+    </property>
+    <addaction name="action_ocrsettingWindow"/>
+    <addaction name="action_ocrCurPage"/>
+   </widget>
+   <widget class="QMenu" name="menu_4">
+    <property name="title">
+     <string>笔记</string>
+    </property>
+    <widget class="QMenu" name="menu_5">
+     <property name="title">
+      <string>创建笔记</string>
+     </property>
+     <property name="icon">
+      <iconset resource="icons.qrc">
+       <normaloff>:/toolbar_icon/pic/notebookOpenAdd.png</normaloff>:/toolbar_icon/pic/notebookOpenAdd.png</iconset>
+     </property>
+     <addaction name="action_createNewNote"/>
+     <addaction name="action_bindNote"/>
+    </widget>
+    <addaction name="menu_5"/>
+    <addaction name="action_openNote_2"/>
+    <addaction name="action_switchNote"/>
+    <addaction name="action_removeNote"/>
+    <addaction name="separator"/>
+    <addaction name="action_checkhandle"/>
+    <addaction name="action_addHandleType"/>
+    <addaction name="action_removeHandleType"/>
+   </widget>
+   <widget class="QMenu" name="theme_menu">
+    <property name="title">
+     <string>主题</string>
+    </property>
+    <addaction name="action_defaultStyle"/>
+    <addaction name="action_randStyle"/>
+   </widget>
+   <widget class="QMenu" name="menu_6">
+    <property name="title">
+     <string>关于</string>
+    </property>
+    <addaction name="action_viewAbout"/>
+   </widget>
+   <widget class="QMenu" name="menu_7">
+    <property name="title">
+     <string>帮助</string>
+    </property>
+    <addaction name="action_viewhelp"/>
+   </widget>
+   <addaction name="file_Menu"/>
+   <addaction name="menu_2"/>
+   <addaction name="menu_3"/>
+   <addaction name="menuOCR"/>
+   <addaction name="menu_4"/>
+   <addaction name="theme_menu"/>
+   <addaction name="menu_6"/>
+   <addaction name="menu_7"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="movable">
+    <bool>false</bool>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>32</width>
+     <height>32</height>
+    </size>
+   </property>
+   <property name="floatable">
+    <bool>false</bool>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <action name="action_loadPDF">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/windowIcon/icon/pdf.ico</normaloff>:/windowIcon/icon/pdf.ico</iconset>
+   </property>
+   <property name="text">
+    <string>加载PDF</string>
+   </property>
+  </action>
+  <action name="action_switchPDF">
+   <property name="text">
+    <string>_switchPDF</string>
+   </property>
+  </action>
+  <action name="action_zoomin">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/toolbar_icon/pic/zoomIn.png</normaloff>:/toolbar_icon/pic/zoomIn.png</iconset>
+   </property>
+   <property name="text">
+    <string>放大</string>
+   </property>
+  </action>
+  <action name="action_zoomout">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/toolbar_icon/pic/zoomOut.png</normaloff>:/toolbar_icon/pic/zoomOut.png</iconset>
+   </property>
+   <property name="text">
+    <string>缩小</string>
+   </property>
+  </action>
+  <action name="action_show_or_hide_advamced">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/toolbar_icon/pic/viewHyper.png</normaloff>:/toolbar_icon/pic/viewHyper.png</iconset>
+   </property>
+   <property name="text">
+    <string>显示高级视图</string>
+   </property>
+  </action>
+  <action name="action_clearHistory">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/windowIcon/icon/history.ico</normaloff>:/windowIcon/icon/history.ico</iconset>
+   </property>
+   <property name="text">
+    <string>清空历史记录</string>
+   </property>
+  </action>
+  <action name="action_setLibraryPath">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/windowIcon/icon/booklib.ico</normaloff>:/windowIcon/icon/booklib.ico</iconset>
+   </property>
+   <property name="text">
+    <string>设置书库目录</string>
+   </property>
+  </action>
+  <action name="action_ocrsettingWindow">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/toolbar_icon/pic/ocr_settings.png</normaloff>:/toolbar_icon/pic/ocr_settings.png</iconset>
+   </property>
+   <property name="text">
+    <string>打开OCR设置窗口</string>
+   </property>
+  </action>
+  <action name="action_ocrCurPage">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/toolbar_icon/pic/OCR_current.png</normaloff>:/toolbar_icon/pic/OCR_current.png</iconset>
+   </property>
+   <property name="text">
+    <string>对当前页进行文字识别</string>
+   </property>
+  </action>
+  <action name="action_openNote_2">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/toolbar_icon/pic/notebookOpenAdd.png</normaloff>:/toolbar_icon/pic/notebookOpenAdd.png</iconset>
+   </property>
+   <property name="text">
+    <string>打开笔记</string>
+   </property>
+  </action>
+  <action name="action_switchNote">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/toolbar_icon/pic/switchNoteBook.png</normaloff>:/toolbar_icon/pic/switchNoteBook.png</iconset>
+   </property>
+   <property name="text">
+    <string>切换笔记</string>
+   </property>
+  </action>
+  <action name="action_removeNote">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/toolbar_icon/pic/editTargetHandleShowRemove.png</normaloff>:/toolbar_icon/pic/editTargetHandleShowRemove.png</iconset>
+   </property>
+   <property name="text">
+    <string>移除笔记</string>
+   </property>
+  </action>
+  <action name="action_addHandleType">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/toolbar_icon/pic/editTargetHandleAdd.png</normaloff>:/toolbar_icon/pic/editTargetHandleAdd.png</iconset>
+   </property>
+   <property name="text">
+    <string>添加笔记工具</string>
+   </property>
+  </action>
+  <action name="action_removeHandleType">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/toolbar_icon/pic/editTargetHandleShowRemove.png</normaloff>:/toolbar_icon/pic/editTargetHandleShowRemove.png</iconset>
+   </property>
+   <property name="text">
+    <string>移除笔记工具</string>
+   </property>
+  </action>
+  <action name="action_createNewNote">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/toolbar_icon/pic/editTargetHandleAdd.png</normaloff>:/toolbar_icon/pic/editTargetHandleAdd.png</iconset>
+   </property>
+   <property name="text">
+    <string>创建新笔记</string>
+   </property>
+  </action>
+  <action name="action_bindNote">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/toolbar_icon/pic/editTargetHandleAdd.png</normaloff>:/toolbar_icon/pic/editTargetHandleAdd.png</iconset>
+   </property>
+   <property name="text">
+    <string>绑定本地笔记</string>
+   </property>
+  </action>
+  <action name="action_checkhandle">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/toolbar_icon/pic/editTargetHandleShow.png</normaloff>:/toolbar_icon/pic/editTargetHandleShow.png</iconset>
+   </property>
+   <property name="text">
+    <string>查看当前的笔记工具配置</string>
+   </property>
+  </action>
+  <action name="action_viewAbout">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/toolbar_icon/pic/btn_about.png</normaloff>:/toolbar_icon/pic/btn_about.png</iconset>
+   </property>
+   <property name="text">
+    <string>关于</string>
+   </property>
+  </action>
+  <action name="action_viewhelp">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/toolbar_icon/pic/help.png</normaloff>:/toolbar_icon/pic/help.png</iconset>
+   </property>
+   <property name="text">
+    <string>查看帮助</string>
+   </property>
+  </action>
+  <action name="action_defaultStyle">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/toolbar_icon/pic/styleSwitch.png</normaloff>:/toolbar_icon/pic/styleSwitch.png</iconset>
+   </property>
+   <property name="text">
+    <string>恢复为默认主题</string>
+   </property>
+  </action>
+  <action name="action_randStyle">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/toolbar_icon/pic/styleSwitch.png</normaloff>:/toolbar_icon/pic/styleSwitch.png</iconset>
+   </property>
+   <property name="text">
+    <string>随机主题</string>
+   </property>
+  </action>
+  <action name="action_singlePage">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/toolbar_icon/pic/singlePage.png</normaloff>:/toolbar_icon/pic/singlePage.png</iconset>
+   </property>
+   <property name="text">
+    <string>单页模式</string>
+   </property>
+  </action>
+  <action name="action_multiPage">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/toolbar_icon/pic/multiPage.png</normaloff>:/toolbar_icon/pic/multiPage.png</iconset>
+   </property>
+   <property name="text">
+    <string>多页连续模式</string>
+   </property>
+   <property name="iconText">
+    <string>多页连续模式</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>CCPDF_View</class>
+   <extends>QWidget</extends>
+   <header location="global">ccpdf_view.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="icons.qrc"/>
+ </resources>
+ <connections/>
+</ui>
