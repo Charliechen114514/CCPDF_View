@@ -1,5 +1,5 @@
 # CCPDF_View
-
+  Access the binaries for Windows by Releasing Part
 ## Intro's
 
 ​	This is the repo for CCPDF_View, a PDF Reader contains Tesseract OCR. Incluings are the releases that is at least portable in Windows 10 and Window 11(Sadly, Linux Version is required to compile by yourself :( )
