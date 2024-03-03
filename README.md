@@ -1,4 +1,4 @@
-# CCPDF_View 2.0
+# CCPDF_View
 
 ## Intro's
 
