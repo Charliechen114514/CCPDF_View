@@ -30,9 +30,9 @@
 
 ​	This is the first Published Releaseed Edtion of CCPDF_View
 
-![image-20240303190206846](./doc\image-20240303190206846.png)
+![image-20240303190206846](./doc/image-20240303190206846.png)
 
-![image-20240303190652420](./doc\image-20240303190652420.png)
+![image-20240303190652420](./doc/image-20240303190652420.png)
 
 ​	In Currrent Version, It at least suppport:
 
