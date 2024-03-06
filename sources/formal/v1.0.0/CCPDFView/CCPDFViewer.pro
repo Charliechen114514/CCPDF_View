@@ -76,10 +76,10 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 
-INCLUDEPATH += "D:/QT projects/CCPDFViewer/include/core" \
-            += "D:/QT projects/CCPDFViewer/include/window" \
-            += "D:/QT projects/CCPDFViewer/include/window/UI" \
-            += "D:/QT projects/CCPDFViewer/include/window/windowCore"
+INCLUDEPATH += "$$PWD/include/core/" \
+            += "$$PWD/include/window/" \
+            += "$$PWD/include/window/UI" \
+            += "$$PWD/include/window/windowCore"
 
 !isEmpty(target.path): INSTALLS += target
 
@@ -89,15 +89,22 @@ RESOURCES += \
     QSS_I.qrc \
     icons.qrc
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/ocr/libs/release/mingw/ -lOCRPack \
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/ocr/libs/release/linux/ -lOCRPack \
 
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/ocr/libs/debug/mingw/ -lOCRPack
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/ocr/libs/debug/linux/ -lOCRPack
 
 
 debug{
     DEFINES += CCPDF_VIEW_DEBUG
 }
 
-INCLUDEPATH += $$PWD/ocr/libs/debug/mingw
-DEPENDPATH += $$PWD/ocr/libs/debug/mingw
+INCLUDEPATH += $$PWD/ocr/libs/debug/linux
+DEPENDPATH += $$PWD/ocr/libs/debug/linux
 
+
+unix:!macx: CONFIG(release, debug|release): LIBS += -L$$PWD/ocr/libs/release/linux/ -lOCRPack \
+
+else: unix:!macx: CONFIG(debug, debug|release): LIBS += -L$$PWD/ocr/libs/debug/linux/ -lOCRPack
+
+INCLUDEPATH += $$PWD/ocr/libs/debug/linux
+DEPENDPATH += $$PWD/ocr/libs/debug/linux

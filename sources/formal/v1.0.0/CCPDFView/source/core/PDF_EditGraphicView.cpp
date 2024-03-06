@@ -1,7 +1,7 @@
 #include "qevent.h"
 #include <QGraphicsScene>
 
-#include "PDF_EditGraphicView.h"
+#include "pdf_editgraphicview.h"
 #include "markerpropertysetter.h"
 #include "pdf_edithistoricalrecorder.h"
 #include "paintingpackage.h"
