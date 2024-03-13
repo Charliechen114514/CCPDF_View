@@ -40,7 +40,7 @@
 > > 2. Allowed Searching in PDF, accepted quick jump to the target findings
 > > 3. Allowed Searching target PDF in the libraries sections
 > > 4. Allowed loading BookMarks in PDF, which allowed better jumps.
-> > 5. Allowed Direct Fetching Texts instead of OCR, OCR Now has been an extra-sources in current Version
+> > 5. Allowed Direct Fetching Texts instead of OCR, OCR Now has been an extra-sources in current Version, Download the extra-sources in the Releases for tags
 >
 > Fixed:
 >
