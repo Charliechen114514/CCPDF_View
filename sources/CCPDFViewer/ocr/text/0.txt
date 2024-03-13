@@ -1,0 +1,37 @@
+Locnl Bufer Optimization                                                                                                                         Chapter 10
+
+Questions
+
+1. How can we measure the Performance of a small fragment of code?
+
+Why are small and frequent memory allocations particularly bad for
+Performance?
+
+What islocal buffer optimization, and how does it work?
+Whyisanallocation ofan additionalbufferinside an object effectively free?
+Whatis short string optimization?
+
+What is small vector optimization?
+
+Why islocal buffer optimization Particularly effective for callable objects?
+What are the trade-offs to consider when using local buffer optimization?
+When should an object notbe Placed in alocal buffer?
+
+六
+
+浊旬六个风生央
+
+Further reading
+
+e CH+ 且8i Performanrce by Viktor Sehr and Bj5m Andrist htcps://www.packtpub-
+com/application-development/c-high-performance
+
+e CH+ Data Structures and 4lgoritjms by Wisnu Anggoro: https://www.packtpub.
+com/application-development/Cc-data-Sstructures-and-algorithms
+
+e丽gj Perpmmance 4pplicnfions inith Ct+ [Video] by Jeganathan
+Swaminathan: https://www.packtpub.com/application-development/high-
+Performance-applications-c-video
+
+[224]
+

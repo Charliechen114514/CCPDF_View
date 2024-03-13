@@ -1,0 +1,48 @@
+<RCC>
+    <qresource prefix="/windowIcon">
+        <file>icon/booklib.ico</file>
+        <file>icon/history.ico</file>
+        <file>icon/mainWindow.ico</file>
+        <file>icon/pdf.ico</file>
+    </qresource>
+    <qresource prefix="/toolbar_icon">
+        <file>icon/open.ico</file>
+        <file>pic/toNext.png</file>
+        <file>pic/toPrev.png</file>
+        <file>pic/refresh.png</file>
+        <file>pic/forMore.png</file>
+        <file>pic/zoomIn.png</file>
+        <file>pic/zoomOut.png</file>
+        <file>pic/editPDF.png</file>
+        <file>pic/editGuard.png</file>
+        <file>pic/pageMode.png</file>
+        <file>pic/OCR_current.png</file>
+        <file>pic/ocr_settings.png</file>
+        <file>pic/clipboard.png</file>
+        <file>pic/notebookOpenAdd.png</file>
+        <file>pic/notebookRelease.png</file>
+        <file>pic/settings.png</file>
+        <file>pic/switchNoteBook.png</file>
+        <file>pic/editTargetHandleAdd.png</file>
+        <file>pic/editTargetHandleShow.png</file>
+        <file>pic/editTargetHandleShowRemove.png</file>
+        <file>pic/viewHyper.png</file>
+        <file>pic/About.png</file>
+        <file>pic/btn_about.png</file>
+        <file>pic/help.png</file>
+        <file>pic/FileRelated.png</file>
+        <file>pic/styleSwitch.png</file>
+        <file>pic/multiPage.png</file>
+        <file>pic/singlePage.png</file>
+        <file>pic/marker.png</file>
+        <file>pic/resume.png</file>
+        <file>pic/resumeTheresume.png</file>
+        <file>pic/savePDF.png</file>
+        <file>pic/Text.png</file>
+        <file>pic/ResumeCurPage.png</file>
+        <file>pic/quit.png</file>
+        <file>pic/cancelSelect.png</file>
+        <file>pic/searching.png</file>
+        <file>pic/bookmarkModel.png</file>
+    </qresource>
+</RCC>

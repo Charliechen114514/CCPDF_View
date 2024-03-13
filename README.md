@@ -26,26 +26,25 @@
 
 > In Windows, what you need is to use Mingw73_64 Or MSVC19 to Compile the Project. The Execution requires the Private Sources libOCRPack, the source is a lib given in the ./sources/OCRPack/, what you are supposed to do at first is to modify according to your need, compile it to the DEBUG/Releasing lib, put it in the ./source/CCPDF_View/ocr/libs, the linking step accuires the lib in such a path.
 
-## Releases v1.0
+## Release 2.0
 
-​	This is the first Published Releaseed Edtion of CCPDF_View
+​	A New Published and a more user friendly releases are published here in March 13th 2024.
 
-![image-20240303190206846](./doc/image-20240303190206846.png)
+![image-20240303190652420](./doc/2024-03-13 211303.png)
 
-![image-20240303190652420](./doc/image-20240303190652420.png)
+​	In this releases, we:
 
-​	In Currrent Version, It at least suppport:
-
-> 1. Load PDF through dragging into the Window, Opening by accessing the menu, or selecting in the Book Model Directories.
-> 2. Owns a history recorder to record what have you read previously
-> 3. Friendly(If it is) fast jump and Page Index reminder
-> 4. OCR Services based on Google Tesseract
-> 5. Bind each PDF with a note with any format and freely set how to open it
-> 6. Set the Book Model at one time and make it easy to access PDF with a PDF-densed directories
-> 7. Themes! Random Themes!
-> 8. Editing a PDF Somehow... At least Commenting and marking!
-> 9. Export the edited PDF
-> 10. Support Resuming and cancel the Resuming
-> 11. Mutli-Key-Sequence Operating
+> Add:
 >
-> For more, access to the helping Windows
+> > 1. Add History Menu to check the history reading PDF much more convinient!
+> > 2. Allowed Searching in PDF, accepted quick jump to the target findings
+> > 3. Allowed Searching target PDF in the libraries sections
+> > 4. Allowed loading BookMarks in PDF, which allowed better jumps.
+> > 5. Allowed Direct Fetching Texts instead of OCR, OCR Now has been an extra-sources in current Version
+>
+> Fixed:
+>
+> > 1. Better Fixing in Notes binding
+> > 2. Avoid Duplicated Error MessageBox
+> > 3. Better Fixing in related updating when dragging PDF into the Applications
+> > 4. Depatched the OCR Sources as optional when downloading Releases
