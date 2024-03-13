@@ -1,1 +1,0 @@
-RUN SCRIPT ./CCPDF_Viewer.sh
