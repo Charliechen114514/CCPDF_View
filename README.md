@@ -26,11 +26,16 @@
 
 > In Windows, what you need is to use Mingw73_64 Or MSVC19 to Compile the Project. The Execution requires the Private Sources libOCRPack, the source is a lib given in the ./sources/OCRPack/, what you are supposed to do at first is to modify according to your need, compile it to the DEBUG/Releasing lib, put it in the ./source/CCPDF_View/ocr/libs, the linking step accuires the lib in such a path.
 
-## Release 2.0
+## Release 2.1.0
+
+> 1. Fixed for focusing issues, now you can focus on pdf by clicking the MainWindow.
+> 2. Boosts the user experience and fixed the potiential bugs when loading the EditWindow importing in Release 2.0.0
+
+## Release 2.0.0
 
 ​	A New Published and a more user friendly releases are published here in March 13th 2024.
 
-![image-20240303190652420](./doc/2024-03-13 211303.png)
+![image-20240303190652420](./doc/image2024-03-13211303.png)
 
 ​	In this releases, we:
 

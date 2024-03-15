@@ -60,7 +60,6 @@ public:
 
     QImage              getImagedFile();
     QImage              getTmpPDFImage();
-    void                keyPressEvent(QKeyEvent*);
 
     QPdfDocument*       getDocForExport();
     QPdfSearchModel*    getSearchModel(){return searchingModel;}
@@ -70,6 +69,7 @@ public:
     int                 jumpToChapter(const QModelIndex &index);
     void                bindBookmarkModel(QAbstractItemView* view);
     void                bindSearchingModel(QAbstractItemView* view);
+
 private:
     QPdfView*           coreView = nullptr;
     QPdfSearchModel*    searchingModel = nullptr;

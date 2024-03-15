@@ -13,7 +13,7 @@
 #include "paintingpackage.h"
 #include "markerpropertysetter.h"
 
-const char* EDIT_WINDOW = "编辑";
+static const char* EDIT_WINDOW = "编辑";
 
 
 EditPDF_MainWindow::EditPDF_MainWindow(QWidget *parent) :

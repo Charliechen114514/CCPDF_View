@@ -9,7 +9,6 @@
 #include "PDF_Utils.h"
 #include "ccpdf_view.h"
 #include "ccpdf_loader.h"
-#include "qevent.h"
 #include "searchresultdelegate.h"
 
 QPdfView::PageMode transPageViewMode(CCPDF_View::PageViewingMode m)
@@ -29,6 +28,7 @@ CCPDF_View::CCPDF_View(QWidget *parent) : QWidget(parent)
     this->coreView  = new QPdfView(this);
     this->loader    = new CCPDF_Loader(this);
     this->tmpLoader = new CCPDF_Loader(this);
+    this->tmpSearchingModel = new QPdfSearchModel(this);
     this->pdfLayOut = new QGridLayout(this);
     this->searchingModel = new QPdfSearchModel(this);
     this->bookMarkModel = new QPdfBookmarkModel(this);
@@ -92,10 +92,6 @@ bool CCPDF_View::loadTempPDF(QString tmpPath)
     this->tmpSearchingModel->setDocument(tmpLoader->coreDocument);
     this->coreView->pageNavigator()->jump(0, {});
     return true;
-}
-
-void CCPDF_View::keyPressEvent(QKeyEvent* env){
-    env->accept();
 }
 
 QPdfDocument* CCPDF_View::getDocForExport()

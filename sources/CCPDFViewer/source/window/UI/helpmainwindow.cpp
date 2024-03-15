@@ -1,6 +1,7 @@
 #include "helpmainwindow.h"
 #include "ui_helpmainwindow.h"
-const char* WINDOW_HELP = "帮助";
+static const char* WINDOW_HELP = "帮助";
+
 HelpMainWindow::HelpMainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::HelpMainWindow)

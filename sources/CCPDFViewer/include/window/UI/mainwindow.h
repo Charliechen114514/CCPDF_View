@@ -80,8 +80,6 @@ public:
     // remove the selected history
     bool    removeHistory();
     bool    removeHistory(QString path);
-    // grab the keyboard events
-    void    refresh();
 
     // zooming
     bool    zoomIn();
@@ -117,6 +115,7 @@ public:
     // windows special events
     void    closeEvent(QCloseEvent*);
     void    keyPressEvent(QKeyEvent*);
+    void    mousePressEvent(QMouseEvent*);
     void    keyReleaseEvent(QKeyEvent*);
     void    wheelEvent(QWheelEvent*);
     void    dragEnterEvent(QDragEnterEvent*);

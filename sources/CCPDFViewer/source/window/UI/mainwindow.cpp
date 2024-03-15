@@ -24,14 +24,13 @@
 #include "eventhandler.h"
 #include "PDF_Utils.h"
 #include "pdf_fileviewmanager.h"
-const char* MAIN_WINDOW_NAME = "CC_PDF阅读器";
+static const char* MAIN_WINDOW_NAME = "CC_PDF阅读器";
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    this->setAcceptDrops(true);
     // Toolbars init
     initToolBar();
     initCore();
@@ -55,7 +54,6 @@ bool MainWindow::loadQSS()
     themeHandle->setQSSByGivenIndex(histManager->getThemeIndex());
     return true;
 }
-
 
 void MainWindow::initThemeMenu()
 {
@@ -116,9 +114,9 @@ void MainWindow::initThemeMenu()
 
 bool MainWindow::initCore()
 {
-    this->statusInfoWidget = new QLabel(this);
-    this->grabKeyboard(); // 强监控
+    this->setAcceptDrops(true);
     setFocus();
+    this->statusInfoWidget = new QLabel(this);
     ui->statusbar->addWidget(this->statusInfoWidget);
     histManager = new PDF_HistoricalRecord;
     histManager->readRequired();
@@ -206,6 +204,7 @@ bool MainWindow::initToolBar()
     pageIndexEdit->setValidator(new QIntValidator(pageIndexEdit));
     connect(pageIndexEdit, &QLineEdit::textChanged, this, &MainWindow::handlePageIndexEdit);
 
+    // functional
     QPushButton* to_prev_tn = new QPushButton(ui->toolBar);
     ui->toolBar->addWidget(to_prev_tn);
     to_prev_tn->setToolTip("前一页");
@@ -219,12 +218,6 @@ bool MainWindow::initToolBar()
     connect(to_next_tn, &QPushButton::clicked, this, &MainWindow::toNextPage);
     ui->toolBar->addSeparator();
     // functional
-    QPushButton* refresh_btn = new QPushButton(ui->toolBar);
-    ui->toolBar->addWidget(refresh_btn);
-    refresh_btn->setToolTip("刷新");
-    refresh_btn->setIcon(QIcon(":/toolbar_icon/pic/refresh.png"));
-    connect(refresh_btn, &QPushButton::clicked, this, &MainWindow::refresh);
-
     QPushButton* for_hyper = new QPushButton(ui->toolBar);
     ui->toolBar->addWidget(for_hyper);
     for_hyper->setToolTip("更多...");
@@ -570,6 +563,7 @@ void MainWindow::initEventHandle()
         new Page_Reactor())->setPageReactor(std::bind(&MainWindow::changePageMode, this)
     )); // [2]
 
+
     keyhandle->registerEventHandle(Qt::Key::Key_Right, this->pageFunctors[0]);
     keyhandle->registerEventHandle(Qt::Key::Key_D, this->pageFunctors[0]);
     keyhandle->registerEventHandle(Qt::Key::Key_Left, this->pageFunctors[1]);
@@ -676,12 +670,6 @@ void MainWindow::windowTitleSetterAccordingPDF()
         this->setWindowTitle(MAIN_WINDOW_NAME);
     else
         this->setWindowTitle(PDF_LocationDefaults::getFileNameByPath(curPDF));
-}
-
-void MainWindow::refresh()
-{
-    this->grabWindowKey = !this->grabWindowKey;
-    this->grabWindowKey ? this->grabKeyboard() : this->releaseKeyboard();
 }
 
 bool MainWindow::removeHistory()
@@ -795,10 +783,6 @@ bool MainWindow::loadPDF(QString path)
     successLoad_windowBehave();
     configNoteBookAddWidget();
     histMenuManager->addToMenu(createHistoryAction(path));
-    if(!grabWindowKey)
-    {
-        refresh();
-    }
     return true;
 }
 
@@ -809,10 +793,6 @@ bool MainWindow::loadTemporaryPath(QString path)
     {
         QMessageBox::critical(this, "发生丢失！","编辑丢失了！");
         return false;
-    }
-    if(!grabWindowKey)
-    {
-        refresh();
     }
     return true;
 }
@@ -903,12 +883,6 @@ bool MainWindow::initEditWindow()
         this->editWindow->setCurrentEditingImage(this->ui->pdf_view->getTmpPDFImage(), ui->pdf_view->currentPDFPath());
     else
         this->editWindow->setCurrentEditingImage(this->ui->pdf_view->getImagedFile(), ui->pdf_view->currentPDFPath());
-    // 防止抢走焦点
-    if(grabWindowKey)
-    {
-        refresh();
-    }
-
     return true;
 }
 
@@ -1063,9 +1037,13 @@ bool MainWindow::operateHyperWidget()
     this->viewHyperWidget = !this->viewHyperWidget;
     ui->hyperWidget->setVisible(this->viewHyperWidget);
     if(this->viewHyperWidget)
+    {
         ui->action_show_or_hide_advamced->setText("隐藏高级模块");
+    }
     else
+    {
         ui->action_show_or_hide_advamced->setText("显示高级模块");
+    }
     return true;
 }
 
@@ -1085,7 +1063,6 @@ void MainWindow::editPageIndexEnable()
 {
     this->shallEditPageIndex = !this->shallEditPageIndex;
     pageIndexEdit->setEnabled(this->shallEditPageIndex);
-    refresh();
 }
 
 bool MainWindow::isPageModeAccessible()
@@ -1298,8 +1275,10 @@ void MainWindow::closeEvent(QCloseEvent* env)
     env->accept();
 }
 
+
 void MainWindow::keyPressEvent(QKeyEvent* env)
 {
+    // prevent the possible losing focus
     keyhandle->setCurrentModifiers(env->modifiers());
     mouseWheelhandler->setCheckModifiers(env->modifiers());
     keyhandle->doProcess(env->key());
@@ -1311,6 +1290,10 @@ void MainWindow::keyReleaseEvent(QKeyEvent*)
     mouseWheelhandler->clearModifiers();
 }
 
+void MainWindow::mousePressEvent(QMouseEvent*)
+{
+    setFocus();
+}
 
 void MainWindow::wheelEvent(QWheelEvent* env)
 {

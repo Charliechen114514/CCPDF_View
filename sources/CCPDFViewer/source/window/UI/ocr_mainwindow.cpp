@@ -3,7 +3,7 @@
 #include "ui_ocr_mainwindow.h"
 #include "PDF_Utils.h"
 #include "eventhandler.h"
-const char* OCR_WINDOW_TITLE = "OCR识别";
+static const char* OCR_WINDOW_TITLE = "OCR识别";
 
 OCR_MainWindow::OCR_MainWindow(QWidget *parent) :
     QMainWindow(parent),
