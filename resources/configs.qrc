@@ -1,0 +1,40 @@
+<RCC>
+    <qresource prefix="/toolbar_icon">
+        <file>icons/open.ico</file>
+        <file>icons/toNext.png</file>
+        <file>icons/toPrev.png</file>
+        <file>icons/zoomIn.png</file>
+        <file>icons/zoomOut.png</file>
+        <file>icons/forMore.png</file>
+        <file>icons/firstPage.png</file>
+        <file>icons/lastPage.png</file>
+        <file>icons/searching.png</file>
+        <file>icons/booklib.ico</file>
+        <file>icons/bookmarkModel.png</file>
+        <file>icons/OCR_current.png</file>
+    </qresource>
+    <qresource prefix="/hyper_widget_icon">
+        <file>icons/open.ico</file>
+        <file>icons/history.ico</file>
+        <file>icons/booklib.ico</file>
+        <file>icons/pageNavigate.png</file>
+        <file>icons/OCR_current.png</file>
+        <file>icons/searching.png</file>
+        <file>icons/translate.png</file>
+        <file>icons/link.png</file>
+    </qresource>
+    <qresource prefix="/windowIcon">
+        <file>icons/mainWindow.ico</file>
+    </qresource>
+    <qresource prefix="/operation_functional">
+        <file>icons/firstPage.png</file>
+        <file>icons/lastPage.png</file>
+        <file>icons/toNext.png</file>
+        <file>icons/toPrev.png</file>
+        <file>icons/zoomIn.png</file>
+        <file>icons/zoomOut.png</file>
+    </qresource>
+    <qresource prefix="/windowicon">
+        <file>icons/mainWindow.ico</file>
+    </qresource>
+</RCC>
