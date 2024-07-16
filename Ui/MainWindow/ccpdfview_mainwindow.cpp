@@ -225,7 +225,8 @@ void CCPDFView_MainWindow::initMenuConnections()
             this, &CCPDFView_MainWindow::loadPDFFromFileDialog);
     connect(ui->action_addTheme, &QAction::triggered,
             this, &CCPDFView_MainWindow::addTheme);
-
+    connect(ui->action_noTheme, &QAction::triggered,
+            this, &CCPDFView_MainWindow::loadNoTheme);
 }
 
 // ------------------------------------------------------
@@ -423,7 +424,8 @@ bool CCPDFView_MainWindow::init_loadRecordPDF(const PDF_Info_Historical_Record& 
     else
     {
         auto new_addee = new CCPDF_SinglePDF_Widget(ui->main_mdi_widget);
-        new_addee->loadPDF(rec.pdf_Path);
+        if(!new_addee->loadPDF(rec.pdf_Path))
+            return false;
         auto window = new CCPDF_MdiSubWindow(this);
         window->setWidget(new_addee);
         ui->main_mdi_widget->addSubWindow(window);
@@ -446,7 +448,8 @@ bool CCPDFView_MainWindow::init_loadRecordPDF(const PDF_Info_Historical_Record& 
 void CCPDFView_MainWindow::loadNewPDF_impl(const QString& path)
 {
     auto new_addee = new CCPDF_SinglePDF_Widget(ui->main_mdi_widget);
-    new_addee->loadPDF(path);
+    if(!new_addee->loadPDF(path))
+        return;
     auto window = new CCPDF_MdiSubWindow(this);
     window->setWidget(new_addee);
     ui->main_mdi_widget->addSubWindow(window);

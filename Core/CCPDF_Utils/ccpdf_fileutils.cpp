@@ -155,6 +155,18 @@ QString CCPDF_FileUtils::PathUtils::fileName(const QString& path)
     return f.baseName();
 }
 
+bool CCPDF_FileUtils::PathUtils::isFile(const QString& path)
+{
+    QFileInfo f(path);
+    return f.isFile();
+}
+
+bool CCPDF_FileUtils::PathUtils::isDir(const QString& path)
+{
+    QFileInfo f(path);
+    return f.isDir();
+}
+
 QString CCPDF_FileUtils::PathUtils::composePath(QString& dir, QString& file){
     return QDir::cleanPath(dir) + QDir::separator() + file;
 }

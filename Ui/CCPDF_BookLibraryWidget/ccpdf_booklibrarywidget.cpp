@@ -45,6 +45,8 @@ CCPDF_BookLibraryWidget::~CCPDF_BookLibraryWidget()
 void CCPDF_BookLibraryWidget::on_booklibrary_treeView_clicked(const QModelIndex &index)
 {
     QString filePath = manager->filePath(index);
+    if(CCPDF_FileUtils::PathUtils::isDir(filePath))
+        return;
     if(!CCPDF_FileUtils::FileUtils::isFileExsits(filePath))
         return;
     emit tellLoadWhat(filePath);
