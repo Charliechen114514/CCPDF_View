@@ -76,7 +76,6 @@ CCPDFView_MainWindow::CCPDFView_MainWindow(QWidget *parent)
     registerMouseEvents();
     // Init KeyBoard Interactives
     registerKeyEvents();
-
     // Ui control
     configUi();
     loadTheme();
@@ -176,7 +175,6 @@ void CCPDFView_MainWindow::initMenu()
 void CCPDFView_MainWindow::initMenuUi()
 {
     initToolBar();
-    initHistoryMenuUi();
     initPluginMenuUi();
     initThemeMenuUi();
 }
@@ -283,6 +281,7 @@ void CCPDFView_MainWindow::loadLoggingHistoricalRecord()
 {
     loadHistoricalPDF();
     initLoadHistoricalWidget();
+    initHistoryMenuUi();
 }
 
 void CCPDFView_MainWindow::loadHistoricalPDF()
@@ -413,6 +412,7 @@ bool CCPDFView_MainWindow::init_loadRecordPDF(const PDF_Info_Historical_Record& 
     {
         auto pac = CCPDF_Error_Helper::ErrorMessgageUtils::HistoryInvalid(rec.pdf_Path);
         CCPDF_MessgaeBoxUtils::ErrorInform::ErrorInform::tellError(pac.title, pac.details + pac.possible_help, this);
+        histRecorder->remove_Info_record(rec.pdf_Path);
         return false;
     }
 
