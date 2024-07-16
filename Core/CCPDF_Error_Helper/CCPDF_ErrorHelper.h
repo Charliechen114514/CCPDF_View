@@ -13,6 +13,15 @@ struct CCPDF_Error_Helper
     struct ErrorMessgageUtils
     {
         static const ErrorMessagePackage
+        HistoryInvalid(QString path, QString possibleHelp = ""){
+            return {
+                "历史记录非法",
+                "文件:> " + path + "不存在，请检查路径！",
+                possibleHelp
+            };
+        }
+
+        static const ErrorMessagePackage
         UnsupportedFormat(QString path, QString possibleHelp = "")
         {
             return {

@@ -409,6 +409,13 @@ bool CCPDFView_MainWindow::loadPdfAccordRecord(const PDF_Info_Historical_Record 
 
 bool CCPDFView_MainWindow::init_loadRecordPDF(const PDF_Info_Historical_Record& rec, bool if_isLastOne)
 {
+    if(!CCPDF_FileUtils::FileUtils::isFileExsits(rec.pdf_Path))
+    {
+        auto pac = CCPDF_Error_Helper::ErrorMessgageUtils::HistoryInvalid(rec.pdf_Path);
+        CCPDF_MessgaeBoxUtils::ErrorInform::ErrorInform::tellError(pac.title, pac.details + pac.possible_help, this);
+        return false;
+    }
+
     if(if_isLastOne)
     {
         loadNewPDF_impl(rec.pdf_Path);
