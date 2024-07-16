@@ -1,7 +1,7 @@
 #include "ccpdf_loader.h"
 #include <QPdfDocument>
 #include <QPainter>
-
+#include <QPdfPageSelector>
 CCPDF_Loader::CCPDF_Loader(QObject *parent)
     : QObject{parent}
 {
@@ -19,6 +19,12 @@ int CCPDF_Loader::pageCount()
         return 0;
     else return core_document->pageCount();
 }
+
+void CCPDF_Loader::helpSetSelector(QPdfPageSelector* l)
+{
+    l->setDocument(core_document.get());
+}
+
 
 QImage CCPDF_Loader::passCurrentImage(int page, QSize size)
 {

@@ -10,6 +10,8 @@ class CCPDF_BookMarkManager;
 class CCPDF_SearchManager;
 class CCPDF_PDfLinkWidgetManager;
 class QLabel;
+class QPdfPageSelector;
+
 
 struct CCPDF_PdfServer{
     __MEMEROY_HOLD_BY_OBJ_TREE          __COM_SIG_WIDGET
@@ -24,7 +26,7 @@ struct CCPDF_PdfServer{
     std::unique_ptr<CCPDF_SearchManager>        searchManager;
     __MEMEROY_HOLD_BY_SMT_PTR           __COM_SIG_WIDGET
     std::unique_ptr<CCPDF_PDfLinkWidgetManager> linkModelManager;
-    void    updateGlobal(CCPDF_SinglePDF_Widget* w, QLabel *l);
+    void    updateGlobal(CCPDF_SinglePDF_Widget* w, QLabel *l, QPdfPageSelector* selector);
     void    updateAllBindPdfWidget(CCPDF_SinglePDF_Widget* w);
     void    setStatusText(QLabel* l);
     CCPDF_SinglePDF_Widget*             current_widget() const {return w;}

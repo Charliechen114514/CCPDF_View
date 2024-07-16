@@ -12,6 +12,8 @@
         <file>icons/booklib.ico</file>
         <file>icons/bookmarkModel.png</file>
         <file>icons/OCR_current.png</file>
+        <file>icons/multiPage.png</file>
+        <file>icons/singlePage.png</file>
     </qresource>
     <qresource prefix="/hyper_widget_icon">
         <file>icons/open.ico</file>

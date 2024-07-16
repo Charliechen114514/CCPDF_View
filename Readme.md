@@ -33,10 +33,16 @@ CCPDFView_Seta is a concise lightweight PDF reader program that is currently in 
 > >Support the use of Tesseract OCR plugin and TesseractWrapper.dll associated with the project as compatibility support for DLL plugin
 > >
 > >Supporting user side free translation program compatibility, users only need to provide a translation EXE file and meet the file name specification to use the translation plugin inside the program
+> >
+> >Support Auto Run For Translations,When you browse the PDF up and down, the software will automatically trigger the call to the plugin program according to the page changes! no matter if is MultiPage or SinglePage
 >
 > Qt Theme Free Registration:
 >
 > >Support the use of all Qt themes with QSS format. Users only need to specify the QSS file of the theme to load it and remember it until it is deleted by the user.
+>
+> MultiPage Supports:
+>
+> > Users now can browse PDF In MutiPage
 
 ## Further Plan
 

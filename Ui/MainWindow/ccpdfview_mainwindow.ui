@@ -54,7 +54,7 @@
        <item row="0" column="1">
         <widget class="QToolBox" name="hpw_pdf_tool_box">
          <property name="currentIndex">
-          <number>5</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="historical_page">
           <property name="geometry">
@@ -90,7 +90,7 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>232</width>
+            <width>236</width>
             <height>527</height>
            </rect>
           </property>
@@ -101,7 +101,7 @@
           <attribute name="label">
            <string>页面操作</string>
           </attribute>
-          <layout class="QVBoxLayout" name="verticalLayout_4">
+          <layout class="QVBoxLayout" name="verticalLayout_7">
            <item>
             <widget class="QWidget" name="page_navigate_btns_widget" native="true">
              <widget class="QPushButton" name="btn_pageBack">
@@ -207,12 +207,66 @@
                  <bool>false</bool>
                 </property>
                 <property name="text">
-                 <string>跳转到：</string>
+                 <string>跳转到正文页码：</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="page_navigate_lineEdit"/>
+               <widget class="QPdfPageSelector" name="PDFSelectionWidget" native="true">
+                <property name="minimumSize">
+                 <size>
+                  <width>200</width>
+                  <height>0</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="widget" native="true">
+             <layout class="QVBoxLayout" name="verticalLayout_4">
+              <item>
+               <widget class="QLineEdit" name="lineEdit">
+                <property name="text">
+                 <string>浏览模式</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btn_sigPage">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>35</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>单页浏览</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../../resources/configs.qrc">
+                  <normaloff>:/toolbar_icon/icons/singlePage.png</normaloff>:/toolbar_icon/icons/singlePage.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btn_multiPage">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>35</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>多页浏览</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../../resources/configs.qrc">
+                  <normaloff>:/toolbar_icon/icons/multiPage.png</normaloff>:/toolbar_icon/icons/multiPage.png</iconset>
+                </property>
+               </widget>
               </item>
              </layout>
             </widget>
@@ -464,6 +518,12 @@
    <class>CCPDF_TranslationWidget</class>
    <extends>QWidget</extends>
    <header location="global">ccpdf_translationwidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>QPdfPageSelector</class>
+   <extends>QWidget</extends>
+   <header location="global">qpdfpageselector.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

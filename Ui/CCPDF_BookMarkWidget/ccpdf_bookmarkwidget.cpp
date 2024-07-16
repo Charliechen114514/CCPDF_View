@@ -1,5 +1,4 @@
 #include "ccpdf_bookmarkwidget.h"
-#include <QPdfBookmarkModel>
 #include "ui_ccpdf_bookmarkwidget.h"
 
 CCPDF_BookMarkWidget::CCPDF_BookMarkWidget(QWidget *parent) :
@@ -7,9 +6,10 @@ CCPDF_BookMarkWidget::CCPDF_BookMarkWidget(QWidget *parent) :
     ui(new Ui::CCPDF_BookMarkWidget)
 {
     ui->setupUi(this);
+    ui->bookmodel_treeView->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
 }
 
-void CCPDF_BookMarkWidget::setModel(QPdfBookmarkModel* m)
+void CCPDF_BookMarkWidget::setModel(CCPDF_BookMarkModel* m)
 {
     ui->bookmodel_treeView->setModel(m);
 }

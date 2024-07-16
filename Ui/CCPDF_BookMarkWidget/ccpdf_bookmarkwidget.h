@@ -1,8 +1,9 @@
 #ifndef CCPDF_BOOKMARKWIDGET_H
 #define CCPDF_BOOKMARKWIDGET_H
 #include "CCPDF_Global.h"
+#include "CCPDF_BookMarkManager/BookMarkModel/ccpdf_bookmarkmodel.h"
 #include <QWidget>
-class QPdfBookmarkModel;
+class CCPDF_BookMarkModel;
 class CCPDF_BookMarkManager;
 
 namespace Ui {
@@ -14,7 +15,7 @@ class CCPDF_BookMarkWidget : public QWidget
     Q_OBJECT
 public:
     explicit    CCPDF_BookMarkWidget(QWidget *parent = nullptr);
-    void        setModel(QPdfBookmarkModel* m);
+    void        setModel(CCPDF_BookMarkModel* m);
     ~CCPDF_BookMarkWidget();
 signals:
     void                        navigateTo(const int pageIndex, const qreal zoomLevel);

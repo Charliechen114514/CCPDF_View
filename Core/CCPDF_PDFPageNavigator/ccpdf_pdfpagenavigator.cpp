@@ -8,6 +8,11 @@ CCPDF_PDFPageNavigator::CCPDF_PDFPageNavigator(QObject *parent)
     : QObject{parent}
 {}
 
+void CCPDF_PDFPageNavigator::setOperatingPDF(CCPDF_SinglePDF_Widget* w)
+{
+    operatingPDF_Widget = w;
+}
+
 bool CCPDF_PDFPageNavigator::pageBackWard()
 {
     return jump(operatingPDF_Widget->pdf_info->currentPageIndex() - 1);
@@ -51,7 +56,6 @@ bool CCPDF_PDFPageNavigator::jump(const int page)
         core_view->pageNavigator()->jump(page, {});
 
     operatingPDF_Widget->freshPDFInfo();
-    emit updatePage(this->operatingPDF_Widget);
     return true;
 }
 
@@ -65,7 +69,6 @@ bool CCPDF_PDFPageNavigator::jump(const int page, QPointF link)
 
     operatingPDF_Widget->core_view->
         core_view->pageNavigator()->jump(page, link);
-    emit updatePage(this->operatingPDF_Widget);
     return true;
 }
 
@@ -85,7 +88,6 @@ bool CCPDF_PDFPageNavigator::checkPageVadility(int page)
 
     return true;
 }
-
 
 CCPDF_PDFPageNavigator::~CCPDF_PDFPageNavigator()
 {

@@ -143,7 +143,7 @@ QString CCPDF_FileUtils::PathUtils::absolutePath(QString& Path){
     return f.absoluteFilePath();
 }
 
-QString CCPDF_FileUtils::PathUtils::atDir(QString& path)
+QString CCPDF_FileUtils::PathUtils::atDir(const QString& path)
 {
     QFileInfo f(path);
     return f.dir().path();

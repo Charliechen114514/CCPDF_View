@@ -12,11 +12,18 @@ class CCPDF_MainViewWidget : public QWidget
 {
     Q_OBJECT
 public:
+    enum PageViewMode
+    {
+        SinglePage,
+        MultiPage
+    };
+
     explicit    CCPDF_MainViewWidget(QWidget *parent = nullptr);
     void        setLoader(const CCPDF_Loader* loader, bool auto_render = true);
     void        startRender();
     int         currentPageIndex() const;
     void        setSearchIndex(int index);
+    void        setPageBrowseMode(PageViewMode mode);
     CCPDF_MyPDFView*    getView() const {return core_view.get();}
     ~CCPDF_MainViewWidget();
 private:
@@ -28,7 +35,6 @@ private:
     std::unique_ptr<QGridLayout>            internal_layout;
     const CCPDF_Loader* __MEMEROY_NO_HOLD   loader;
 signals:
-
 };
 
 #endif // CCPDF_MAINVIEWWIDGET_H

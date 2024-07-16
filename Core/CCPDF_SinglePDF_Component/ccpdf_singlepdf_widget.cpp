@@ -1,3 +1,5 @@
+#include <QPdfPageNavigator>
+#include <QPdfPageSelector>
 #include "CCPDF_MainView/ccpdf_mainviewwidget.h"
 #include "ccpdf_singlepdf_widget.h"
 #include "CCPDF_Error_Helper/CCPDF_ErrorHelper.h"
@@ -17,6 +19,13 @@ CCPDF_SinglePDF_Widget::CCPDF_SinglePDF_Widget(QWidget *parent)
 {
     this->setLayout(new QGridLayout(this));
     this->layout()->addWidget(core_view);
+}
+
+
+void CCPDF_SinglePDF_Widget::handleWhileMutiPage(int page)
+{
+    freshPDFInfo();
+    emit tellMutiPageAt(page + 1);
 }
 
 PDF_Info_Historical_Record  CCPDF_SinglePDF_Widget::getRecord(){
@@ -43,19 +52,49 @@ QImage CCPDF_SinglePDF_Widget::renderImage()
     return loader->passCurrentImage(pdf_info->currentPageIndex(), pdfConfig.pageSize);
 }
 
+QAbstractItemModel*  CCPDF_SinglePDF_Widget::pageModel()
+{
+    return loader->pageModel();
+}
+
 void CCPDF_SinglePDF_Widget::setSearchIndex(int index)
 {
     core_view->getView()->setCurrentSearchResultIndex(index);
 }
 
+void CCPDF_SinglePDF_Widget::helpSetSelector(QPdfPageSelector* s)
+{
+    loader->helpSetSelector(s);
+}
+
+void CCPDF_SinglePDF_Widget::setPageMode(PageMode m)
+{
+    switch(m)
+    {
+    case PageMode::SINGLE:
+        core_view->setPageBrowseMode(CCPDF_MainViewWidget::SinglePage);
+        disconnect(core_view->providePageNavigator(), &QPdfPageNavigator::currentPageChanged,
+                this, &CCPDF_SinglePDF_Widget::handleWhileMutiPage);break;
+    case PageMode::MULTI:
+        core_view->setPageBrowseMode(CCPDF_MainViewWidget::MultiPage);
+        connect(core_view->providePageNavigator(), &QPdfPageNavigator::currentPageChanged,
+                this, &CCPDF_SinglePDF_Widget::handleWhileMutiPage);
+        break;
+    }
+    mode = m;
+}
+
 QString CCPDF_SinglePDF_Widget::pdfPath()
 {
+
     return loader->path();
 }
 
 
 CCPDF_SinglePDF_Widget::~CCPDF_SinglePDF_Widget()
 {
+    disconnect(core_view->providePageNavigator(), &QPdfPageNavigator::currentPageChanged,
+               this, &CCPDF_SinglePDF_Widget::handleWhileMutiPage);
     qDebug() << "Close Single Widget";
 }
 

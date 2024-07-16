@@ -1,3 +1,4 @@
+#include <QClipboard>
 #include "ccpdf_translationwidget.h"
 #include "ui_ccpdf_translationwidget.h"
 
@@ -8,13 +9,19 @@
 #include "CCPDF_Error_Helper/CCPDF_ErrorHelper.h"
 #endif
 
+static void __pvt_handleBtnTextTrans(QPushButton* btn, bool state)
+{
+    if(state)   btn->setText("自动翻译: 开");
+    else        btn->setText("自动翻译: 关");
+}
+
+
 
 CCPDF_TranslationWidget::CCPDF_TranslationWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::CCPDF_TranslationWidget)
 {
     ui->setupUi(this);
-
 #ifndef SUPPORT_TRANSLATION
     this->setEnabled(false);
     return;
@@ -22,6 +29,8 @@ CCPDF_TranslationWidget::CCPDF_TranslationWidget(QWidget *parent) :
     ui->btn_depatch->setEnabled(false);
     QFont font("Microsoft YaHei", 12);  // 使用支持中文的字体，如微软雅黑
     ui->result_textBrowser->setFont(font);
+    __pvt_handleBtnTextTrans(ui->btn_setAutoTrans, setAutoTranslate);
+    connect(ui->btn_setAutoTrans, &QPushButton::clicked, this, &CCPDF_TranslationWidget::opposeAutoTransLate);
 #endif
 }
 
@@ -30,7 +39,16 @@ CCPDF_TranslationWidget::~CCPDF_TranslationWidget()
     delete ui;
 }
 
+
 #ifdef SUPPORT_TRANSLATION
+
+void CCPDF_TranslationWidget::opposeAutoTransLate()
+{
+    setAutoTranslate = !setAutoTranslate;
+    __pvt_handleBtnTextTrans(ui->btn_setAutoTrans, setAutoTranslate);
+}
+
+
 bool CCPDF_TranslationWidget::tryCheck()
 {
     return CCPDF_FileUtils::FileUtils::isFileExsits(exe);
@@ -78,6 +96,10 @@ void CCPDF_TranslationWidget::setEXE()
 
 void CCPDF_TranslationWidget::setInputEdit(const QString& what){
     ui->input_textEdit->setText(what);
+    if(setAutoTranslate && CCPDF_FileUtils::FileUtils::isFileExsits(exe))
+    {
+        makeRun();
+    }
 }
 
 void CCPDF_TranslationWidget::setEXE(const QString& res)
@@ -134,12 +156,10 @@ void CCPDF_TranslationWidget::makeRun()
 {
     if(!checkRunnable())
         return;
-#ifdef SUPPORT_TRANSLATION
     setInput();
     translations->setTranslationExecutionPlugin(exe);
     translations->setTranslationResultReading(outPut);
     translations->run();
-#endif
 }
 
 void CCPDF_TranslationWidget::handleRes()
@@ -158,4 +178,10 @@ void CCPDF_TranslationWidget::handleRes()
     registerOrUpdate();
     ui->result_textBrowser->setText(translations->fetchResult());
 }
+
+void CCPDF_TranslationWidget::on_btn_copyToClipBoard_clicked()
+{
+    QApplication::clipboard()->setText(ui->result_textBrowser->toPlainText());
+}
+
 #endif

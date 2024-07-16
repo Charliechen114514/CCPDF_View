@@ -489,6 +489,17 @@ QString ThemeHistoricalHelper::getInUsedOne()
     return {};
 }
 
+QString ThemeHistoricalHelper::getInUseFileName()
+{
+    if(!themeRecord.empty() && CCPDF_FileUtils::FileUtils::
+        isFileExsits(themeRecord.last().themeQRC))
+    {
+        return themeRecord.last().themeQRC;
+    }
+    return {};
+}
+
+
 void ThemeHistoricalHelper::enRecord(const QString& filePath)
 {
     const auto _paths = paths();

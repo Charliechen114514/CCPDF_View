@@ -27,9 +27,9 @@ public:
     static constexpr const char* INPUT = "reading.plugin.input";
     void        setTrans(CCPDF_ExternTranslation* _translation);
     void        setHolder(Plugin_HistoricalHelper* w){histroyHolder = w;}
-
+    void        opposeAutoTransLate();
     void        setEXE();
-    void        setInputEdit(const QString& what);
+    void        setInputEdit(const QString &what);
     void        setEXE(const QString& res);
     void        setOutPut();
     void        setOutPut(const QString& res);
@@ -45,6 +45,7 @@ private:
     void                setInput();
     bool                checkRunnable();
     void                registerOrUpdate();
+    bool                setAutoTranslate{false};
     QString             exe;
     QString             outPut;
 
@@ -52,6 +53,8 @@ private:
     Plugin_HistoricalHelper*                        histroyHolder;
     __MEMEROY_NO_HOLD   CCPDF_ExternTranslation*    translations;
 #endif
+private slots:
+    void on_btn_copyToClipBoard_clicked();
 };
 
 #endif // CCPDF_TRANSLATIONWIDGET_H

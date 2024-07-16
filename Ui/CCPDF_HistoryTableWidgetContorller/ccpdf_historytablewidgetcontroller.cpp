@@ -69,7 +69,7 @@ CCPDF_HistoryTableWidgetController::CCPDF_HistoryTableWidgetController(
     operatingWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     operatingWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     operatingWidget->setColumnCount(CONTROL_UI_INFO::DEFAULT_COL);
-    operatingWidget->setVerticalHeaderLabels(generateHeaders());
+    operatingWidget->setHorizontalHeaderLabels(generateHeaders());
     initMenu();
 }
 

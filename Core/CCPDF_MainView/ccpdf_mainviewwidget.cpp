@@ -26,6 +26,19 @@ void CCPDF_MainViewWidget::startRender()
         core_view->setDocument(loader->passDoc());
 }
 
+void CCPDF_MainViewWidget::setPageBrowseMode(PageViewMode mode)
+{
+    if(!this->loader)
+        return;
+    switch(mode)
+    {
+    case SinglePage:
+        core_view->setPageMode(QPdfView::PageMode::SinglePage);break;
+    case MultiPage:
+        core_view->setPageMode(QPdfView::PageMode::MultiPage);break;
+    }
+}
+
 int CCPDF_MainViewWidget::currentPageIndex() const
 {
     if(!this->core_view)

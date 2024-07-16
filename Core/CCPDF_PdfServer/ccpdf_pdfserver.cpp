@@ -1,4 +1,5 @@
 #include <QLabel>
+#include <QPdfPageSelector>
 #include "CCPDF_BookMarkManager/ccpdf_bookmarkmanager.h"
 #include "CCPDF_SearchManager/ccpdf_searchmanager.h"
 #include "ccpdf_pdfserver.h"
@@ -8,10 +9,14 @@
 #include "CCPDF_ZoomController/ccpdf_zoomcontroller.h"
 #include "CCPDF_LinkListWidgetManager/ccpdf_pdflinkwidgetmanager.h"
 
-void CCPDF_PdfServer::updateGlobal(CCPDF_SinglePDF_Widget* w, QLabel* l)
+void CCPDF_PdfServer::updateGlobal(CCPDF_SinglePDF_Widget* w, QLabel* l, QPdfPageSelector *selector)
 {
     updateAllBindPdfWidget(w);
     setStatusText(l);
+    if(w)
+    {
+        w->helpSetSelector(selector);
+    }
 }
 
 void CCPDF_PdfServer::updateAllBindPdfWidget(CCPDF_SinglePDF_Widget* w)

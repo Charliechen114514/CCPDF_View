@@ -100,6 +100,21 @@ void CCPDF_MainWindowToolBarConfigure::doConfig(QToolBar* bar)
     btn_zoomOut->setIcon(QIcon(":/toolbar_icon/icons/zoomOut.png"));
     connect(btn_zoomOut, &QPushButton::clicked, this->window, &CCPDFView_MainWindow::zoomOut);
     bar->addSeparator();
+
+    // zooming
+    QPushButton* btn_SinglePage = new QPushButton(bar);
+    bar->addWidget(btn_SinglePage);
+    btn_SinglePage->setToolTip("单页模式");
+    btn_SinglePage->setIcon(QIcon(":/toolbar_icon/icons/singlePage.png"));
+    connect(btn_SinglePage, &QPushButton::clicked, this->window, &CCPDFView_MainWindow::pageSingle);
+
+    QPushButton* btn_MultiPage = new QPushButton(bar);
+    bar->addWidget(btn_MultiPage);
+    btn_MultiPage->setToolTip("缩小");
+    btn_MultiPage->setIcon(QIcon(":/toolbar_icon/icons/multiPage.png"));
+    connect(btn_MultiPage, &QPushButton::clicked, this->window, &CCPDFView_MainWindow::pageMulti);
+    bar->addSeparator();
+
 //    // page mode view
 //    QPushButton* btn_changePageMode = new QPushButton(bar);
 //    bar->addWidget(btn_changePageMode);

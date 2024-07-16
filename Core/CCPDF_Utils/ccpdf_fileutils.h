@@ -54,7 +54,7 @@ struct CCPDF_FileUtils
     struct PathUtils{
         static QString                  composePath(QString& dir, QString& fileName);
         static QString                  absolutePath(QString& path);
-        static QString                  atDir(QString& path);
+        static QString                  atDir(const QString &path);
         static QString                  fileName(const QString& path);
         static bool                     isFile(const QString& path);
         static bool                     isDir(const QString& path);

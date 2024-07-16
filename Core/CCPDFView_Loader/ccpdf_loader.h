@@ -3,6 +3,7 @@
 #include <QObject>
 #include <QPdfDocument>
 
+class QPdfPageSelector;
 class CCPDF_Loader : public QObject
 {
     Q_OBJECT
@@ -47,6 +48,8 @@ public:
     bool                            fine(){return e.e == CCPDF_Loader_Error::Error::NO_ERROR;}
     QString                         path(){return loadPath;}
     QImage                          passCurrentImage(int page, QSize size);
+    void                            helpSetSelector(QPdfPageSelector* l);
+    QAbstractListModel*             pageModel(){return core_document->pageModel();}
 private:
     friend class    CCPDF_MainViewWidget;
     friend struct   CCPDF_Info;
@@ -54,6 +57,7 @@ private:
     friend class    CCPDF_BookMarkManager;
     friend class    CCPDF_SearchManager;
     friend class    CCPDF_PDfLinkWidgetManager;
+    friend class    CCPDF_PageLabelWidget;
     std::unique_ptr<QPdfDocument>   core_document;
     CCPDF_Loader_Error              e;
     QPdfDocument*                   passDoc() const {return core_document.get();};

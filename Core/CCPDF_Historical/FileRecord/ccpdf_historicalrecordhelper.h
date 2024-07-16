@@ -177,6 +177,7 @@ public:
     bool                                setPluginInfo_LoggerPath(QString where);
     QString                             getStyleSheet(const QString& fileName);
     QString                             getInUsedOne();
+    QString                             getInUseFileName();
     void                                enRecord(const QString& filePath);
     void                                deRecord(const QString& name);
     QStringList                         paths();

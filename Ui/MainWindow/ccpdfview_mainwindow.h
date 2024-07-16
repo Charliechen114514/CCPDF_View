@@ -34,6 +34,12 @@ public:
         PAGE_BEG,
         PAGE_END
     };
+
+    enum class PageModeBrowseCommand{
+        SINGLE_PAGE,
+        MULTI_PAGE
+    };
+
     enum class PageZoomCommand{
         ZOOM_IN,
         ZOOM_OUT
@@ -71,6 +77,10 @@ public:
     bool    zoom(PageZoomCommand command);
     bool    zoom(const double zoomPercentage);
 // ------------------------------------------------------
+//  Public PDF Page Mode Control
+// ------------------------------------------------------
+    bool    setPageMode(PageModeBrowseCommand comm);
+// ------------------------------------------------------
 //  Public Refresh Main Ui
 // ------------------------------------------------------
     void    opposeHyperWidgetVisible();
@@ -88,6 +98,9 @@ public:
 //  routePage
 // ------------------------------------------------------
     void    addTheme();
+
+
+
     ~CCPDFView_MainWindow();
 
 
@@ -100,6 +113,8 @@ public slots:
     __BIND_Ui_Widgets   void    pageEnd(){pageNavigate(PageNavigateCommand::PAGE_END);}
     __BIND_Ui_Widgets   void    zoomIn(){zoom(PageZoomCommand::ZOOM_IN);}
     __BIND_Ui_Widgets   void    zoomOut(){zoom(PageZoomCommand::ZOOM_OUT);}
+    __BIND_Ui_Widgets   void    pageSingle(){setPageMode(PageModeBrowseCommand::SINGLE_PAGE);}
+    __BIND_Ui_Widgets   void    pageMulti(){setPageMode(PageModeBrowseCommand::MULTI_PAGE);}
     __BIND_Ui_Widgets   void    routeToSearching(){routeTo(PAGE_INDEX::SEARCHIN);}
     __BIND_Ui_Widgets   void    routeToLibrary(){routeTo(PAGE_INDEX::LIBRARY);}
 //    __BIND_Ui_Widgets   void    routeToLink();
@@ -114,13 +129,15 @@ public slots:
 private slots:
     __BIND_Ui_Widgets   void    on_btn_pageBack_clicked(){pageBackward();}
     __BIND_Ui_Widgets   void    on_btn_pageForward_clicked(){pageForward();}
-    __BIND_Ui_Widgets   void    on_page_navigate_lineEdit_textChanged(const QString &arg1){pageNavigate(arg1);}
     __BIND_Ui_Widgets   void    on_btn_copyText2ClipBoard_clicked(){copyPdfTextToClipBoard();}
     __BIND_Ui_Widgets   void    on_btn_toBegin_clicked(){pageBegin();}
     __BIND_Ui_Widgets   void    on_btn_toEnd_clicked(){pageEnd();}
-    __BIND_Ui_No_Inline void    on_page_navigate_lineEdit_returnPressed();
+    __BIND_Ui_Widgets   void    on_btn_sigPage_clicked(){pageSingle();}
+    __BIND_Ui_Widgets   void    on_btn_multiPage_clicked(){pageMulti();}
     __BIND_Ui_No_Inline void    on_historical_tableWidget_customContextMenuRequested(const QPoint &pos);
     __BIND_Ui_No_Inline void    on_historical_tableWidget_itemClicked(QTableWidgetItem *item);
+
+
 
 private:
 // ------------------------------------------------------
@@ -175,10 +192,14 @@ private:
 //  Load According PDF_Record : Brand New
 // ------------------------------------------------------
     bool                            loadPdfAccordRecord(const PDF_Info_Historical_Record &rec);
+    void                            doAddNewWindow(CCPDF_SinglePDF_Widget* w);
+    CCPDF_SinglePDF_Widget*         createNewSingle(const QString &path);
     bool                            init_loadRecordPDF(const PDF_Info_Historical_Record &rec, bool if_isLastOne);
     void                            loadNewPDF_impl(const QString &path);
     // switch operating
     void                            switch_activate_window(QMdiSubWindow *);
+
+    void                            handlePageNavigateChange();
 
 // ------------------------------------------------------
 //  Load New PDF Hook
@@ -224,6 +245,11 @@ private:
     void                            handleNewTheme(const QString name);
     void                            switchToTheme(const QString name);
     void                            handleRemoveTheme(const QString name);
+
+// ------------------------------------------------------
+//  Page Modes
+// ------------------------------------------------------
+    void                            handleMultiPageChange();
 
 // ------------------------------------------------------
 // Private Members

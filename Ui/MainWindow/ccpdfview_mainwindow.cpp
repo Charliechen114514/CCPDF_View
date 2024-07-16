@@ -2,6 +2,7 @@
 #include <QEvent>
 #include <QValidator>
 #include <QMimeData>
+#include <QResource>
 #include "CCPDF_ThemeAction/ccpdf_theme_action.h"
 #include "CCPDF_ThemeActionHelper/ccpdf_themeactionhelper.h"
 #include "CCPDF_BookMarkManager/ccpdf_bookmarkmanager.h"
@@ -125,7 +126,8 @@ void CCPDFView_MainWindow::configWidgetsVisible()
 
 void CCPDFView_MainWindow::loadTheme()
 {
-    setStyleSheet(themeHolder->getInUsedOne());
+    QString p = themeHolder->getInUsedOne();
+    setStyleSheet("");
 }
 
 void CCPDFView_MainWindow::loadNoTheme()
@@ -137,8 +139,6 @@ void CCPDFView_MainWindow::loadNoTheme()
 //  init self signals Connections: initMainWindowConnections()
 void CCPDFView_MainWindow::initMainWindowConnections()
 {
-    connect(pdfServer->pageNavigator, &CCPDF_PDFPageNavigator::updatePage,
-            this, &CCPDFView_MainWindow::updateOldRecord);
     connect(ui->bookMarkWidget, &CCPDF_BookMarkWidget::navigateTo,
             this, &CCPDFView_MainWindow::handleBookMarkJump);
     connect(ui->searchWidget, &CCPDF_SearchWidget::tellPageNavigate,
@@ -146,6 +146,8 @@ void CCPDFView_MainWindow::initMainWindowConnections()
     connect(ui->main_mdi_widget, &QMdiArea::subWindowActivated,
             this, &CCPDFView_MainWindow::switch_activate_window);
     connect(ui->linkListWidget, &CCPDF_LinkWidget::navigateTo,
+            this, qOverload<int>(&CCPDFView_MainWindow::pageNavigate));
+    connect(ui->PDFSelectionWidget, &QPdfPageSelector::currentPageChanged,
             this, qOverload<int>(&CCPDFView_MainWindow::pageNavigate));
 }
 
@@ -242,8 +244,6 @@ void CCPDFView_MainWindow::initHyperWidget()
 
 void CCPDFView_MainWindow::initHW_PageNavigation()
 {
-    ui->page_navigate_lineEdit->setValidator
-        (new QIntValidator(ui->page_navigate_lineEdit));
 }
 
 void CCPDFView_MainWindow::initHW_HistPage()
@@ -329,7 +329,7 @@ void CCPDFView_MainWindow::registerKeyEvents()
     windowEventHelper->registerKeyEvents(
         Qt::Key_M, std::bind(&CCPDFView_MainWindow::opposeBookModelVisible, this),
         Qt::Modifier::CTRL | Qt::Modifier::SHIFT
-   );
+    );
     windowEventHelper->registerKeyEvents(
         Qt::Key_R, std::bind(&CCPDF_MdiArea::activateNextSubWindow, ui->main_mdi_widget),
         Qt::Modifier::CTRL
@@ -390,6 +390,29 @@ bool CCPDFView_MainWindow::loadPDF(const QString& path)
     return true;
 }
 
+void CCPDFView_MainWindow::doAddNewWindow(CCPDF_SinglePDF_Widget* new_addee)
+{
+    auto window = new CCPDF_MdiSubWindow(this);
+    window->setWidget(new_addee);
+    ui->main_mdi_widget->addSubWindow(window);
+    window->setWindowTitle(new_addee->pdf_info->title());
+    connect(window, &CCPDF_MdiSubWindow::self_close,
+            this, &CCPDFView_MainWindow::handlePdfClose);
+    window->showMaximized();
+}
+
+CCPDF_SinglePDF_Widget* CCPDFView_MainWindow::createNewSingle(const QString& path)
+{
+    auto new_addee = new CCPDF_SinglePDF_Widget(ui->main_mdi_widget);
+    if(!new_addee->loadPDF(path))
+    {
+        delete new_addee;
+        return nullptr;
+    }
+    connect(new_addee, &CCPDF_SinglePDF_Widget::tellMutiPageAt, this, &CCPDFView_MainWindow::handleMultiPageChange);
+    return new_addee;
+}
+
 bool CCPDFView_MainWindow::loadPdfAccordRecord(const PDF_Info_Historical_Record &rec)
 {
     // first check if is already in!
@@ -423,19 +446,12 @@ bool CCPDFView_MainWindow::init_loadRecordPDF(const PDF_Info_Historical_Record& 
     }
     else
     {
-        auto new_addee = new CCPDF_SinglePDF_Widget(ui->main_mdi_widget);
-        if(!new_addee->loadPDF(rec.pdf_Path))
-            return false;
-        auto window = new CCPDF_MdiSubWindow(this);
-        window->setWidget(new_addee);
-        ui->main_mdi_widget->addSubWindow(window);
-        window->setWindowTitle(new_addee->pdf_info->title());
-        connect(window, &CCPDF_MdiSubWindow::self_close,
-                this, &CCPDFView_MainWindow::handlePdfClose);
-        window->showMaximized();
+        auto new_addee = createNewSingle(rec.pdf_Path);
+        doAddNewWindow(new_addee);
         pdfServer->pageNavigator->setOperatingPDF(new_addee);
     }
     bool ops_res = pdfServer->pageNavigator->jump(rec.current_page);
+    updateOldRecord(pdfServer->current_widget());
     if(!ops_res)
     {
         handlePageNavigationError();
@@ -447,16 +463,8 @@ bool CCPDFView_MainWindow::init_loadRecordPDF(const PDF_Info_Historical_Record& 
 
 void CCPDFView_MainWindow::loadNewPDF_impl(const QString& path)
 {
-    auto new_addee = new CCPDF_SinglePDF_Widget(ui->main_mdi_widget);
-    if(!new_addee->loadPDF(path))
-        return;
-    auto window = new CCPDF_MdiSubWindow(this);
-    window->setWidget(new_addee);
-    ui->main_mdi_widget->addSubWindow(window);
-    window->setWindowTitle(new_addee->pdf_info->title());
-    connect(window, &CCPDF_MdiSubWindow::self_close,
-            this, &CCPDFView_MainWindow::handlePdfClose);
-    window->showMaximized();
+    auto new_addee = createNewSingle(path);
+    doAddNewWindow(new_addee);
     udpateCurrentFocusWidgets(new_addee);
     doloadNewPdfCallBack(new_addee);
 }
@@ -508,7 +516,7 @@ bool CCPDFView_MainWindow::setCurrentPageText()
         {
         case CCPDF_TextHelper::TextGetterHelperError::Error::NO_ERROR:
             pdfPlugins->setPluginInputFromOutWard(
-                ui->pdftextBrowser->toPlainText(),
+                ui->pdftextBrowser->toPlainText().remove("\n"),
                 CCPDF_ExternalPlugins::CurrentSupportPlugin::TRANSLATION);
             return true;
         case CCPDF_TextHelper::TextGetterHelperError::Error::NO_BIND_PDF:
@@ -713,6 +721,31 @@ bool CCPDFView_MainWindow::zoom(const double zoomPercentage)
     return pdfServer->zoomController->setZoomPercentage(zoomPercentage);
 }
 
+bool CCPDFView_MainWindow::setPageMode(PageModeBrowseCommand comm)
+{
+    if(!pdfServer->current_widget())
+        return false;
+    else
+    {
+        switch(comm)
+        {
+        case PageModeBrowseCommand::SINGLE_PAGE:
+            pdfServer->current_widget()->setPageMode(CCPDF_SinglePDF_Widget::PageMode::SINGLE);
+            break;
+        case PageModeBrowseCommand::MULTI_PAGE:
+            pdfServer->current_widget()->setPageMode(CCPDF_SinglePDF_Widget::PageMode::MULTI);
+            break;
+        }
+    }
+    return true;
+}
+
+void CCPDFView_MainWindow::handleMultiPageChange()
+{
+    handlePageNavigateChange();
+    updateOldRecord(pdfServer->current_widget());
+}
+
 void CCPDFView_MainWindow::opposeHyperWidgetVisible()
 {
     hyperWidgetVisible = !hyperWidgetVisible;
@@ -764,9 +797,7 @@ bool CCPDFView_MainWindow::pageNavigate(int page)
         handlePageNavigationError();
         return false;
     }
-    updateHistWidget();
-    updateLinkModel();
-    setCurrentPageText();
+    handlePageNavigateChange();
     return true;
 }
 
@@ -778,9 +809,7 @@ bool CCPDFView_MainWindow::pageNavigate(int page, QPointF p)
         handlePageNavigationError();
         return false;
     }
-    updateHistWidget();
-    updateLinkModel();
-    setCurrentPageText();
+    handlePageNavigateChange();
     return true;
 }
 
@@ -823,6 +852,15 @@ bool CCPDFView_MainWindow::pageNavigate(PageNavigateCommand m)
     return operate_res;
 }
 
+void CCPDFView_MainWindow::handlePageNavigateChange()
+{
+    updateHistWidget();
+    updateLinkModel();
+    setCurrentPageText();
+    updateOldRecord(pdfServer->current_widget());
+}
+
+
 void CCPDFView_MainWindow::updateOldRecord(CCPDF_SinglePDF_Widget* oldWidget)
 {
     if(!oldWidget)
@@ -844,7 +882,7 @@ void CCPDFView_MainWindow::updateBookLibRecord(QString atWhere)
 
 void CCPDFView_MainWindow::udpateCurrentFocusWidgets(CCPDF_SinglePDF_Widget* newWidgets)
 {
-    pdfServer->updateGlobal(newWidgets, statusLabel);
+    pdfServer->updateGlobal(newWidgets, statusLabel, ui->PDFSelectionWidget);
     pdfPlugins->updateAllBindPdfWidget(newWidgets);
     setCurrentPageText();
 }
@@ -952,11 +990,6 @@ void CCPDFView_MainWindow::dropEvent(QDropEvent* event)
     }
 }
 
-void CCPDFView_MainWindow::on_page_navigate_lineEdit_returnPressed()
-{
-    pageNavigate(ui->page_navigate_lineEdit->text());
-}
-
 CCPDFView_MainWindow::~CCPDFView_MainWindow()
 {
     qDebug() << "MainWindow finish closing, is clearing buffers";
@@ -993,3 +1026,4 @@ void CCPDFView_MainWindow::initPluginHistAndConfig()
     pdfPlugins->pluginHist->setPluginInfo_LoggerPath(__DEF_PLUGIN_PDF_LOG);
     pdfPlugins->pluginHist->readPluginInfo_HistoricalRecord();
 }
+

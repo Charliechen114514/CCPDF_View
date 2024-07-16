@@ -18,7 +18,7 @@ INCLUDEPATH += \
     Ui/CCPDF_BookLibraryWidget \
     Ui/CCPDF_BookMarkWidget \
     Ui/CCPDF_SearchWidget \
-    Ui/CCPDF_LinkWidget\
+    Ui/CCPDF_LinkWidget \
     Ui/Plugins/Translations \
     External
 
@@ -45,6 +45,7 @@ SOURCES += Core/CCPDFView_Loader/ccpdf_loader.cpp \
     Ui/CCPDF_BookLibraryManager/FileSystemModel/ccpdf_booklirabry_filesystemmodel.cpp \
     Ui/CCPDF_BookLibraryManager/ccpdf_booklibrarymanager.cpp \
     Ui/CCPDF_BookLibraryWidget/ccpdf_booklibrarywidget.cpp \
+    Ui/CCPDF_BookMarkManager/BookMarkModel/ccpdf_bookmarkmodel.cpp \
     Ui/CCPDF_BookMarkManager/ccpdf_bookmarkmanager.cpp \
     Ui/CCPDF_BookMarkWidget/ccpdf_bookmarkwidget.cpp \
     Ui/CCPDF_HistoryAction/ccpdf_historyaction.cpp \
@@ -94,6 +95,7 @@ HEADERS += CCPDF_Global.h \
     Ui/CCPDF_BookLibraryManager/FileSystemModel/ccpdf_booklirabry_filesystemmodel.h \
     Ui/CCPDF_BookLibraryManager/ccpdf_booklibrarymanager.h \
     Ui/CCPDF_BookLibraryWidget/ccpdf_booklibrarywidget.h \
+    Ui/CCPDF_BookMarkManager/BookMarkModel/ccpdf_bookmarkmodel.h \
     Ui/CCPDF_BookMarkManager/ccpdf_bookmarkmanager.h \
     Ui/CCPDF_BookMarkWidget/ccpdf_bookmarkwidget.h \
     Ui/CCPDF_HistoryAction/ccpdf_historyaction.h \

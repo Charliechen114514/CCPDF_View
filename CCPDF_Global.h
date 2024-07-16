@@ -45,6 +45,7 @@ namespace INIT_PARAMS
     static constexpr    double  ZOOM_INIT           = 1.0;
     static constexpr    bool    HYPER_WID_VISIBLE   = false;
     static constexpr    bool    BOOKMODEL_VISIBLE   = false;
+    static constexpr    bool    SELECTION_VISIBLE   = false;
 };
 
 

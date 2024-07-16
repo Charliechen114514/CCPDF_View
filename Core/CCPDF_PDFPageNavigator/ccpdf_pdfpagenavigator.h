@@ -1,6 +1,7 @@
 #ifndef CCPDF_PDFPAGENAVIGATOR_H
 #define CCPDF_PDFPAGENAVIGATOR_H
 #include "CCPDF_Global.h"
+#include <QPdfLink>
 #include <QObject>
 class CCPDF_SinglePDF_Widget;
 
@@ -37,7 +38,7 @@ public:
     };
     PageNav_Error::Error    getError(){return e.e;}
     explicit                CCPDF_PDFPageNavigator(QObject *parent = nullptr);
-    void                    setOperatingPDF(CCPDF_SinglePDF_Widget* w){operatingPDF_Widget = w;}
+    void                    setOperatingPDF(CCPDF_SinglePDF_Widget* w);
     bool                    pageBackWard();
     bool                    pageForward();
     void                    pageBegin();
@@ -53,7 +54,6 @@ private:
     bool                                            checkPageVadility(int page);
     PageNav_Error                                   e;
 signals:
-    void                                            updatePage(CCPDF_SinglePDF_Widget*);
 };
 
 #endif // CCPDF_PDFPAGENAVIGATOR_H
