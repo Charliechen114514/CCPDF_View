@@ -5,7 +5,7 @@
 CCPDF_Loader::CCPDF_Loader(QObject *parent)
     : QObject{parent}
 {
-    core_document = std::make_unique<QPdfDocument>(new QPdfDocument);
+    core_document = std::make_unique<QPdfDocument>();
 }
 
 CCPDF_Loader::~CCPDF_Loader()
