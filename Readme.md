@@ -27,6 +27,8 @@ CCPDFView_Seta is a concise lightweight PDF reader program that is currently in 
 > PDF Library
 >
 > >Support library browsing, easily navigate through all PDF programs in one folder within the program
+> >
+> >Support searching for PDF titles in a given directory
 >
 > Plugin operation:
 >
@@ -47,7 +49,4 @@ CCPDFView_Seta is a concise lightweight PDF reader program that is currently in 
 ## Further Plan
 
 1. Supports accepting command-line arguments for execution.
-2. Library search function
-3. Function setting assistance
-4. PDF editing function
-5. PDF saving function
+2. Complete help documentation and more optimized code architecture
