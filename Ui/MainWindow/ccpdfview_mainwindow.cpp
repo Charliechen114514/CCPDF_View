@@ -2,7 +2,6 @@
 #include <QEvent>
 #include <QValidator>
 #include <QMimeData>
-#include <QResource>
 #include "CCPDF_ThemeAction/ccpdf_theme_action.h"
 #include "CCPDF_ThemeActionHelper/ccpdf_themeactionhelper.h"
 #include "CCPDF_BookMarkManager/ccpdf_bookmarkmanager.h"
@@ -126,8 +125,7 @@ void CCPDFView_MainWindow::configWidgetsVisible()
 
 void CCPDFView_MainWindow::loadTheme()
 {
-    QString p = themeHolder->getInUsedOne();
-    setStyleSheet("");
+    setStyleSheet(themeHolder->getInUsedOne());
 }
 
 void CCPDFView_MainWindow::loadNoTheme()
@@ -788,6 +786,10 @@ void CCPDFView_MainWindow::addTheme()
     handleNewTheme(fileSelect);
 }
 
+void CCPDFView_MainWindow::showAbout()
+{
+    CCPDF_MessgaeBoxUtils::AboutCCPDFView::showAbout(this);
+}
 
 bool CCPDFView_MainWindow::pageNavigate(int page)
 {

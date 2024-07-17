@@ -48,7 +48,9 @@ public:
         HISTMENU     ,
         PAGE_NAV     ,
         OCR_TEXT     ,
+        TRANSLATE    ,
         LIBRARY      ,
+        LINK         ,
         SEARCHIN     ,
     };
 
@@ -98,8 +100,10 @@ public:
 //  routePage
 // ------------------------------------------------------
     void    addTheme();
-
-
+// ------------------------------------------------------
+//  routePage
+// ------------------------------------------------------
+    void    showAbout();
 
     ~CCPDFView_MainWindow();
 
@@ -115,9 +119,11 @@ public slots:
     __BIND_Ui_Widgets   void    zoomOut(){zoom(PageZoomCommand::ZOOM_OUT);}
     __BIND_Ui_Widgets   void    pageSingle(){setPageMode(PageModeBrowseCommand::SINGLE_PAGE);}
     __BIND_Ui_Widgets   void    pageMulti(){setPageMode(PageModeBrowseCommand::MULTI_PAGE);}
+    __BIND_Ui_Widgets   void    routeToHistory(){routeTo(PAGE_INDEX::HISTMENU);}
     __BIND_Ui_Widgets   void    routeToSearching(){routeTo(PAGE_INDEX::SEARCHIN);}
     __BIND_Ui_Widgets   void    routeToLibrary(){routeTo(PAGE_INDEX::LIBRARY);}
-//    __BIND_Ui_Widgets   void    routeToLink();
+    __BIND_Ui_Widgets   void    routeToTranslate(){routeTo(PAGE_INDEX::TRANSLATE);}
+    __BIND_Ui_Widgets   void    routeToLink(){routeTo(PAGE_INDEX::LINK);};
     __BIND_Ui_Widgets   void    routeToOCR(){routeTo(PAGE_INDEX::OCR_TEXT);}
     void                        closeEvent(QCloseEvent*);
     void                        keyPressEvent(QKeyEvent*);

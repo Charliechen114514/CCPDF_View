@@ -22,13 +22,20 @@ void CCPDF_MainWindowToolBarConfigure::doConfig(QToolBar* bar)
     connect(bookMarkModel_btn,  &QPushButton::clicked, this->window, &CCPDFView_MainWindow::opposeBookModelVisible);
     bar->addSeparator();
 
+    // for more
+    QPushButton* for_hyper = new QPushButton(bar);
+    bar->addWidget(for_hyper);
+    for_hyper->setToolTip("更多...");
+    for_hyper->setIcon(QIcon(":/toolbar_icon/icons/forMore.png"));
+    connect(for_hyper, &QPushButton::clicked, this->window, &CCPDFView_MainWindow::opposeHyperWidgetVisible);
+    bar->addSeparator();
 
-    // searching model
-    QPushButton* searching_btn = new QPushButton(bar);
-    bar->addWidget(searching_btn);
-    searching_btn->setToolTip("操作目录模块");
-    searching_btn->setIcon(QIcon(":/toolbar_icon/icons/searching.png"));
-    connect(searching_btn,  &QPushButton::clicked, this->window, &CCPDFView_MainWindow::routeToSearching);
+    // history
+    QPushButton* history = new QPushButton(bar);
+    bar->addWidget(history);
+    history->setToolTip("历史记录");
+    history->setIcon(QIcon(":/toolbar_icon/icons/history.ico"));
+    connect(history,  &QPushButton::clicked, this->window, &CCPDFView_MainWindow::routeToHistory);
     bar->addSeparator();
 
     // library
@@ -46,6 +53,31 @@ void CCPDF_MainWindowToolBarConfigure::doConfig(QToolBar* bar)
     OCR->setIcon(QIcon(":/toolbar_icon/icons/OCR_current.png"));
     connect(OCR,  &QPushButton::clicked, this->window, &CCPDFView_MainWindow::routeToOCR);
     bar->addSeparator();
+
+    // Translate
+    QPushButton* translate = new QPushButton(bar);
+    bar->addWidget(translate);
+    translate->setToolTip("翻译");
+    translate->setIcon(QIcon(":/toolbar_icon/icons/translate.png"));
+    connect(translate,  &QPushButton::clicked, this->window, &CCPDFView_MainWindow::routeToTranslate);
+    bar->addSeparator();
+
+    // Link
+    QPushButton* link = new QPushButton(bar);
+    bar->addWidget(link);
+    link->setToolTip("翻译");
+    link->setIcon(QIcon(":/toolbar_icon/icons/link.png"));
+    connect(link,  &QPushButton::clicked, this->window, &CCPDFView_MainWindow::routeToLink);
+    bar->addSeparator();
+
+    // searching model
+    QPushButton* searching_btn = new QPushButton(bar);
+    bar->addWidget(searching_btn);
+    searching_btn->setToolTip("检索");
+    searching_btn->setIcon(QIcon(":/toolbar_icon/icons/searching.png"));
+    connect(searching_btn,  &QPushButton::clicked, this->window, &CCPDFView_MainWindow::routeToSearching);
+    bar->addSeparator();
+
 
     // page index lineEdit
     QLineEdit* pageIndexEdit = new QLineEdit(bar);
@@ -80,13 +112,6 @@ void CCPDF_MainWindowToolBarConfigure::doConfig(QToolBar* bar)
     connect(to_final, &QPushButton::clicked, this->window, &CCPDFView_MainWindow::pageEnd);
     bar->addSeparator();
 
-    QPushButton* for_hyper = new QPushButton(bar);
-    bar->addWidget(for_hyper);
-    for_hyper->setToolTip("更多...");
-    for_hyper->setIcon(QIcon(":/toolbar_icon/icons/forMore.png"));
-    connect(for_hyper, &QPushButton::clicked, this->window, &CCPDFView_MainWindow::opposeHyperWidgetVisible);
-    bar->addSeparator();
-
     // zooming
     QPushButton* btn_zoomIn = new QPushButton(bar);
     bar->addWidget(btn_zoomIn);
@@ -101,7 +126,7 @@ void CCPDF_MainWindowToolBarConfigure::doConfig(QToolBar* bar)
     connect(btn_zoomOut, &QPushButton::clicked, this->window, &CCPDFView_MainWindow::zoomOut);
     bar->addSeparator();
 
-    // zooming
+    // page mode
     QPushButton* btn_SinglePage = new QPushButton(bar);
     bar->addWidget(btn_SinglePage);
     btn_SinglePage->setToolTip("单页模式");
@@ -110,93 +135,23 @@ void CCPDF_MainWindowToolBarConfigure::doConfig(QToolBar* bar)
 
     QPushButton* btn_MultiPage = new QPushButton(bar);
     bar->addWidget(btn_MultiPage);
-    btn_MultiPage->setToolTip("缩小");
+    btn_MultiPage->setToolTip("多页模式");
     btn_MultiPage->setIcon(QIcon(":/toolbar_icon/icons/multiPage.png"));
     connect(btn_MultiPage, &QPushButton::clicked, this->window, &CCPDFView_MainWindow::pageMulti);
     bar->addSeparator();
 
-//    // page mode view
-//    QPushButton* btn_changePageMode = new QPushButton(bar);
-//    bar->addWidget(btn_changePageMode);
-//    btn_changePageMode->setToolTip("改变页模式");
-//    btn_changePageMode->setIcon(QIcon(":/Ui/icons/pageMode.png"));
-//    connect(btn_changePageMode, &QPushButton::clicked, this->window, &CCPDFView_MainWindow::changePageMode);
-//    bar->addSeparator();
-//    // edit
-//    QPushButton* btn_editPDF = new QPushButton(bar);
-//    bar->addWidget(btn_editPDF);
-//    btn_editPDF->setToolTip("编辑当前页");
-//    btn_editPDF->setIcon(QIcon(":/Ui/icons/editPDF.png"));
-//    connect(btn_editPDF, &QPushButton::clicked, this->window, &CCPDFView_MainWindow::openEditWindow);
-
-//    QPushButton* btn_resumeCurPage = new QPushButton(bar);
-//    bar->addWidget(btn_resumeCurPage);
-//    btn_resumeCurPage->setToolTip("恢复当前页");
-//    btn_resumeCurPage->setIcon(QIcon(":/Ui/icons/ResumeCurPage.png"));
-//    connect(btn_resumeCurPage, &QPushButton::clicked, this->window, &CCPDFView_MainWindow::backToBeforeEditedCurPage);
-
-//    bar->addSeparator();
-
-//    // noteBook
-//    QPushButton* btn_addOrOpenNote = new QPushButton(bar);
-//    bar->addWidget(btn_addOrOpenNote);
-//    btn_addOrOpenNote->setToolTip("打开或者创建笔记");
-//    btn_addOrOpenNote->setIcon(QIcon(":/Ui/icons/notebookOpenAdd.png"));
-//    connect(btn_addOrOpenNote, &QPushButton::clicked, this->window, &CCPDFView_MainWindow::openAddNoteBook);
-
-//    QPushButton* btn_releaseNote = new QPushButton(bar);
-//    bar->addWidget(btn_releaseNote);
-//    btn_releaseNote->setToolTip("解绑笔记");
-//    btn_releaseNote->setIcon(QIcon(":/Ui/icons/notebookRelease.png"));
-//    connect(btn_releaseNote, &QPushButton::clicked, this->window, &CCPDFView_MainWindow::removeNoteBook);
-
-//    QPushButton* btnSwitch = new QPushButton(bar);
-//    bar->addWidget(btnSwitch);
-//    btnSwitch->setToolTip("更换绑定笔记");
-//    btnSwitch->setIcon(QIcon(":/Ui/icons/switchNoteBook.png"));
-//    connect(btnSwitch, &QPushButton::clicked, this->window, &CCPDFView_MainWindow::switchNoteBook);
-//    bar->addSeparator();
-
-//    // notebookTarget
-//    QPushButton* btn_addTarget = new QPushButton(bar);
-//    bar->addWidget(btn_addTarget);
-//    btn_addTarget->setToolTip("增加笔记工具");
-//    btn_addTarget->setIcon(QIcon(":/Ui/icons/editTargetHandleAdd.png"));
-//    connect(btn_addTarget, &QPushButton::clicked, this->window, &CCPDFView_MainWindow::addHandle);
-
-//    QPushButton* btn_removeTarget = new QPushButton(bar);
-//    bar->addWidget(btn_removeTarget);
-//    btn_removeTarget->setToolTip("去除笔记工具");
-//    btn_removeTarget->setIcon(QIcon(":/Ui/icons/editTargetHandleShowRemove.png"));
-//    connect(btn_removeTarget, &QPushButton::clicked, this->window, &CCPDFView_MainWindow::removeHandle);
-
-//    QPushButton* btn_showTarget = new QPushButton(bar);
-//    bar->addWidget(btn_showTarget);
-//    btn_showTarget->setToolTip("查看当前的笔记工具");
-//    btn_showTarget->setIcon(QIcon(":/Ui/icons/editTargetHandleShow.png"));
-//    connect(btn_showTarget, &QPushButton::clicked, this->window, &CCPDFView_MainWindow::showhandles);
-//    bar->addSeparator();
-
-//    // style
-//    QPushButton* btn_styleshift = new QPushButton(bar);
-//    bar->addWidget(btn_styleshift);
-//    btn_styleshift->setToolTip("切换主题");
-//    btn_styleshift->setIcon(QIcon(":/Ui/icons/styleSwitch.png"));
-//    connect(btn_styleshift, &QPushButton::clicked, this->window, &CCPDFView_MainWindow::changeStyleDirect);
-//    bar->addSeparator();
-
-//    // about
-//    QPushButton* btn_about = new QPushButton(bar);
-//    bar->addWidget(btn_about);
-//    btn_about->setToolTip("关于这个软件...");
-//    btn_about->setIcon(QIcon(":/Ui/icons/btn_about.png"));
-//    connect(btn_about, &QPushButton::clicked, this->window, &CCPDFView_MainWindow::viewAbout);
-//    bar->addSeparator();
+    // about
+    QPushButton* btn_about = new QPushButton(bar);
+    bar->addWidget(btn_about);
+    btn_about->setToolTip("关于这个软件...");
+    btn_about->setIcon(QIcon(":/toolbar_icon/icons/btn_about.png"));
+    connect(btn_about, &QPushButton::clicked, this->window, &CCPDFView_MainWindow::showAbout);
+    bar->addSeparator();
 
 //    // help
 //    QPushButton* btn_help = new QPushButton(bar);
 //    bar->addWidget(btn_help);
-//    btn_help->setToolTip("关于这个软件...");
+//    btn_help->setToolTip("帮助...");
 //    btn_help->setIcon(QIcon(":/Ui/icons/help.png"));
 //    connect(btn_help, &QPushButton::clicked, this->window, &CCPDFView_MainWindow::viewHelp);
 //    bar->addSeparator();

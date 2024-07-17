@@ -1,7 +1,6 @@
 #ifndef CCPDF_MESSGAEBOXUTILS_H
 #define CCPDF_MESSGAEBOXUTILS_H
 #include <QStringList>
-#include <QMessageBox>
 class QWidget;
 
 struct CCPDF_MessgaeBoxUtils
@@ -20,6 +19,12 @@ struct CCPDF_MessgaeBoxUtils
     {
         static bool query(QString title, QString captions, QWidget* parent);
     };
+
+    struct AboutCCPDFView
+    {
+        static void showAbout(QWidget* parent);
+    };
 };
+
 
 #endif // CCPDF_MESSGAEBOXUTILS_H
