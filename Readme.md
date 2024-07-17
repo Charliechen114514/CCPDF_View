@@ -1,6 +1,6 @@
 # README
 
-![image-20240715210652898](assets/README_FirstPage.png)
+![image-20240715210652898](README_FirstPage.png)
 
 CCPDFView_Seta is a concise lightweight PDF reader program that is currently in the testing phase.
 
