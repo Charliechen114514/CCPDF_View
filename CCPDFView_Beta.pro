@@ -23,6 +23,7 @@ INCLUDEPATH += \
     External
 
 SOURCES += Core/CCPDFView_Loader/ccpdf_loader.cpp \
+    Core/CCPDF_GragRecorder/ccpdf_gragpointrecorder.cpp \
     Core/CCPDF_Historical/FileRecord/ccpdf_historicalrecordhelper.cpp \
     Core/CCPDF_Historical/Historical/historical_record.cpp \
     Core/CCPDF_Info/ccpdf_info.cpp \
@@ -70,7 +71,9 @@ SOURCES += Core/CCPDFView_Loader/ccpdf_loader.cpp \
 
 HEADERS += CCPDF_Global.h \
     Core/CCPDFView_Loader/ccpdf_loader.h \
+    Core/CCPDF_About/CCPDF_About.h \
     Core/CCPDF_Error_Helper/CCPDF_ErrorHelper.h \
+    Core/CCPDF_GragRecorder/ccpdf_gragpointrecorder.h \
     Core/CCPDF_Historical/FileRecord/ccpdf_historicalrecordhelper.h \
     Core/CCPDF_Historical/Historical/historical_record.h \
     Core/CCPDF_Info/ccpdf_info.h \
@@ -133,10 +136,13 @@ FORMS += \
 # SUPPORT_TESS_OCR: Support Tesseract OCR's Dynamic Loader, required TessractWrapper.dll
 
 
-DEFINES += \
-#           TEST_MODE \
+DEFINES += \ # CHECK_MEMORY \
            SUPPORT_TESS_OCR \
            SUPPORT_TRANSLATION \
+
+
+DEFINES +=  __MAJOR_VERSION=0 \
+            __MINOR_VERISON=3
 
 
 contains(DEFINES, SUPPORT_TESS_OCR){
