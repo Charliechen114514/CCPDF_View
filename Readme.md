@@ -14,6 +14,12 @@ CCPDFView_Seta is a concise lightweight PDF reader program that is currently in 
 > >
 > > Memory Functionalities supported by logging automatically locates the last browsing location for documents that the user has not closed next time they open them
 >
+> Basic Zooming
+>
+> > Support Zoom in and Zoom Out 
+> >
+> > Support Mouse Dragging when PDF is zooming in a relavent large case
+>
 > PDF Service
 >
 > > Parse native PDF bookmarks and support jumping by double-clicking for quick browsing of chapters
