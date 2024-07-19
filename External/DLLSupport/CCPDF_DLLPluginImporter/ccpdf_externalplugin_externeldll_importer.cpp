@@ -1,11 +1,13 @@
 #include <QLibrary>
-#if defined(_MSC_VER) || defined(WIN64) || defined(_WIN64) || defined(__WIN64__) || defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
+#include "ccpdf_externalplugin_externeldll_importer.h"
+
+#ifdef WINDOWS
 #include <windows.h>
 #define ADD_LIB_PATH(path)  SetDllDirectoryA(path)
 #else
-#define ADD_LIB_PATH(path)  setenv("LD_LIBRARY_PATH", (QString("$LD_LIBRARY_PATH:") + path).toStdString().c_str())
+#define ADD_LIB_PATH(path)  setenv("LD_LIBRARY_PATH", (QString("$LD_LIBRARY_PATH:") + path).toStdString().c_str(), 0)
 #endif
-#include "ccpdf_externalplugin_externeldll_importer.h"
+
 
 CCPDF_ExternalPlugin_ExternelDLL_Importer::
     CCPDF_ExternalPlugin_ExternelDLL_Importer()

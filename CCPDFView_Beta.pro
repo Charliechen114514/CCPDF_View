@@ -49,6 +49,7 @@ SOURCES += Core/CCPDFView_Loader/ccpdf_loader.cpp \
     Ui/CCPDF_BookMarkManager/BookMarkModel/ccpdf_bookmarkmodel.cpp \
     Ui/CCPDF_BookMarkManager/ccpdf_bookmarkmanager.cpp \
     Ui/CCPDF_BookMarkWidget/ccpdf_bookmarkwidget.cpp \
+    Ui/CCPDF_HelpWindow/ccpdf_helpwindow.cpp \
     Ui/CCPDF_HistoryAction/ccpdf_historyaction.cpp \
     Ui/CCPDF_HistoryActionHelper/ccpdf_history_actionhelper.cpp \
     Ui/CCPDF_HistoryTableWidgetContorller/ccpdf_historytablewidgetcontroller.cpp \
@@ -65,6 +66,7 @@ SOURCES += Core/CCPDFView_Loader/ccpdf_loader.cpp \
     Ui/Plugins/OCR/plugin_ocr_uiwidget.cpp \
     Ui/Plugins/Translations/ccpdf_translationwidget.cpp \
     Ui/ThemeController/ccpdf_themecontroller.cpp \
+    Ui/WindowBuild/CCPDF_HelpingBuild/ccpdf_helpingbuildhelper.cpp \
     Ui/WindowBuild/CCPDF_ToolBarConfigure/ccpdf_toolbarconfigure.cpp \
     Ui/WindowEventHelper/windoweventhelper.cpp \
     Ui/CCPDF_MdiArea/ccpdf_mdiarea.cpp \
@@ -101,6 +103,7 @@ HEADERS += CCPDF_Global.h \
     Ui/CCPDF_BookMarkManager/BookMarkModel/ccpdf_bookmarkmodel.h \
     Ui/CCPDF_BookMarkManager/ccpdf_bookmarkmanager.h \
     Ui/CCPDF_BookMarkWidget/ccpdf_bookmarkwidget.h \
+    Ui/CCPDF_HelpWindow/ccpdf_helpwindow.h \
     Ui/CCPDF_HistoryAction/ccpdf_historyaction.h \
     Ui/CCPDF_HistoryActionHelper/ccpdf_history_actionhelper.h \
     Ui/CCPDF_HistoryTableWidgetContorller/ccpdf_historytablewidgetcontroller.h \
@@ -116,6 +119,7 @@ HEADERS += CCPDF_Global.h \
     Ui/Plugins/OCR/plugin_ocr_uiwidget.h \
     Ui/Plugins/Translations/ccpdf_translationwidget.h \
     Ui/ThemeController/ccpdf_themecontroller.h \
+    Ui/WindowBuild/CCPDF_HelpingBuild/ccpdf_helpingbuildhelper.h \
     Ui/WindowBuild/CCPDF_ToolBarConfigure/ccpdf_toolbarconfigure.h \
     Ui/WindowEventHelper/windoweventhelper.h \
     Ui/CCPDF_MdiArea/ccpdf_mdiarea.h \
@@ -124,6 +128,7 @@ HEADERS += CCPDF_Global.h \
 FORMS += \
     Ui/CCPDF_BookLibraryWidget/ccpdf_booklibrarywidget.ui \
     Ui/CCPDF_BookMarkWidget/ccpdf_bookmarkwidget.ui \
+    Ui/CCPDF_HelpWindow/ccpdf_helpwindow.ui \
     Ui/CCPDF_LinkWidget/ccpdf_linkwidget.ui \
     Ui/CCPDF_SearchWidget/ccpdf_searchwidget.ui \
     Ui/MainWindow/ccpdfview_mainwindow.ui \
@@ -143,6 +148,7 @@ DEFINES += \ # CHECK_MEMORY \
 
 DEFINES +=  __MAJOR_VERSION=0 \
             __MINOR_VERISON=3
+
 
 
 contains(DEFINES, SUPPORT_TESS_OCR){
@@ -166,6 +172,28 @@ SOURCES +=  \
             External/External_Option_Compile/CCPDF_ExternTranslations/Translate/ccpdf_externtranslation.cpp \
 
 }
+
+# Documentations Install
+DEFINES += DocDir=\\\"./Documentation/\\\"
+
+COPY_DIR = $$PWD/Documentation/
+COPY_FILES.files = $$COPY_DIR/About.md \
+                   $$COPY_DIR/Browse_PDF.md \
+                   $$COPY_DIR/Historical.md \
+                   $$COPY_DIR/Library.md \
+                   $$COPY_DIR/LoadPDF.md \
+                   $$COPY_DIR/PDF_Link.md \
+                   $$COPY_DIR/Plugin_OCR.md \
+                   $$COPY_DIR/Plugin_Translations.md \
+                   $$COPY_DIR/Searching.md \
+                   $$COPY_DIR/SwitchThemes.md \
+                   $$COPY_DIR/TextGrabber.md \
+                   $$COPY_DIR/Help.md
+                   $$COPY_DIR/Browse_PDF/*
+
+COPY_FILES.path = Documentation/
+
+COPIES += COPY_FILES
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

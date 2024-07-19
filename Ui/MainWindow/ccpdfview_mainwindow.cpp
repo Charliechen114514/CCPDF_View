@@ -28,6 +28,7 @@
 #include "CCPDF_HistoryActionHelper/ccpdf_history_actionhelper.h"
 #include "CCPDF_HistoryTableWidgetContorller/ccpdf_historytablewidgetcontroller.h"
 #include "CCPDF_LinkListWidgetManager/ccpdf_pdflinkwidgetmanager.h"
+#include "CCPDF_HelpWindow/ccpdf_helpwindow.h"
 #ifdef SUPPORT_TESS_OCR
 #include "Plugins/ocr/plugin_ocruimanager.h"
 #endif
@@ -789,6 +790,13 @@ void CCPDFView_MainWindow::addTheme()
 void CCPDFView_MainWindow::showAbout()
 {
     CCPDF_MessgaeBoxUtils::AboutCCPDFView::showAbout(this);
+}
+
+void CCPDFView_MainWindow::showHelp()
+{
+    if(!helpWindow)
+        helpWindow = new CCPDF_HelpWindow(this);
+    helpWindow->show();
 }
 
 bool CCPDFView_MainWindow::pageNavigate(int page)

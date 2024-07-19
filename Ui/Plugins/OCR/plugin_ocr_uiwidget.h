@@ -22,7 +22,11 @@ private:
     Ui::Plugin_OCR_UiWidget *ui;
 public:
 #ifdef SUPPORT_TESS_OCR
+#ifdef WINDOWS
     static constexpr const char* REQ_FILE = "TessereactWrapper.dll";
+#else
+    static constexpr const char* REQ_FILE = "libTessereactWrapper.so";
+#endif
     QString                 record_dll_path;
     QString                 record_dll_dir;
     bool                    setDLLFile(const QString& dir);

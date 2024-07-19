@@ -19,6 +19,7 @@ class   CCPDF_HistoryTableWidgetController;
 class   CCPDF_Other_Simple_Server_HistoricalHelper;
 class   ThemeHistoricalHelper;
 class   CCPDF_ThemeActionHelper;
+class   CCPDF_HelpWindow;
 QT_BEGIN_NAMESPACE
 namespace Ui { class CCPDFView_MainWindow; }
 QT_END_NAMESPACE
@@ -101,9 +102,10 @@ public:
 // ------------------------------------------------------
     void    addTheme();
 // ------------------------------------------------------
-//  routePage
+//  showAbout And Help
 // ------------------------------------------------------
     void    showAbout();
+    void    showHelp();
 
     ~CCPDFView_MainWindow();
 
@@ -133,15 +135,15 @@ public slots:
     void                        dropEvent(QDropEvent*);
 
 private slots:
-    __BIND_Ui_Widgets   void    on_btn_pageBack_clicked(){pageBackward();}
-    __BIND_Ui_Widgets   void    on_btn_pageForward_clicked(){pageForward();}
-    __BIND_Ui_Widgets   void    on_btn_copyText2ClipBoard_clicked(){copyPdfTextToClipBoard();}
-    __BIND_Ui_Widgets   void    on_btn_toBegin_clicked(){pageBegin();}
-    __BIND_Ui_Widgets   void    on_btn_toEnd_clicked(){pageEnd();}
-    __BIND_Ui_Widgets   void    on_btn_sigPage_clicked(){pageSingle();}
-    __BIND_Ui_Widgets   void    on_btn_multiPage_clicked(){pageMulti();}
-    __BIND_Ui_No_Inline void    on_historical_tableWidget_customContextMenuRequested(const QPoint &pos);
-    __BIND_Ui_No_Inline void    on_historical_tableWidget_itemClicked(QTableWidgetItem *item);
+    __BIND_Ui_Widgets   void        on_btn_pageBack_clicked(){pageBackward();}
+    __BIND_Ui_Widgets   void        on_btn_pageForward_clicked(){pageForward();}
+    __BIND_Ui_Widgets   void        on_btn_copyText2ClipBoard_clicked(){copyPdfTextToClipBoard();}
+    __BIND_Ui_Widgets   void        on_btn_toBegin_clicked(){pageBegin();}
+    __BIND_Ui_Widgets   void        on_btn_toEnd_clicked(){pageEnd();}
+    __BIND_Ui_Widgets   void        on_btn_sigPage_clicked(){pageSingle();}
+    __BIND_Ui_Widgets   void        on_btn_multiPage_clicked(){pageMulti();}
+    __BIND_Ui_No_Inline void        on_historical_tableWidget_customContextMenuRequested(const QPoint &pos);
+    __BIND_Ui_No_Inline void        on_historical_tableWidget_itemClicked(QTableWidgetItem *item);
 
 
 
@@ -286,8 +288,7 @@ private:
         CCPDF_HistoryTableWidgetController>         histtableWidgetController;
     std::unique_ptr<
         CCPDF_ThemeActionHelper>                    themeActionHelper;
-#ifdef SUPPORT_TESS_OCR
-
-#endif
+    __MEMEROY_HOLD_BY_OBJ_TREE
+        CCPDF_HelpWindow*                           helpWindow{nullptr};
 };
 #endif // CCPDFVIEW_MAINWINDOW_H

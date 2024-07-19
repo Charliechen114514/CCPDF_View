@@ -51,8 +51,3 @@ CCPDFView_Seta is a concise lightweight PDF reader program that is currently in 
 > MultiPage Supports:
 >
 > > Users now can browse PDF In MutiPage
-
-## Further Plan
-
-1. Supports accepting command-line arguments for execution.
-2. Complete help documentation and more optimized code architecture

@@ -7,6 +7,7 @@ class CCPDF_ExternalPlugin_ExternelDLL_Importer;
 template<int CREATE_PTR_N, int SETTING_PTR_N, int FETCH_PTR_N, int ERASE_PTR_N>
 struct OCR_Analisys_Helper
 {
+    virtual ~OCR_Analisys_Helper() = default;
     static constexpr int SYMBOL_SUM = CREATE_PTR_N + \
                                       SETTING_PTR_N + \
                                       FETCH_PTR_N + \

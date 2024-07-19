@@ -35,9 +35,13 @@
 #define __PLUGIN_SHARE      QString("./plugin/share/")
 #define __OCR_SHARE_PIC     __PLUGIN_SHARE + "ocr_image"
 
+#define __DocDir            DocDir
 
 
-
+// Platforms Related
+#if defined(_MSC_VER) || defined(WIN64) || defined(_WIN64) || defined(__WIN64__) || defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
+#define WINDOWS
+#endif
 
 // Zoom Params Define
 namespace INIT_PARAMS

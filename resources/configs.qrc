@@ -18,6 +18,7 @@
         <file>icons/link.png</file>
         <file>icons/history.ico</file>
         <file>icons/btn_about.png</file>
+        <file>icons/help.png</file>
     </qresource>
     <qresource prefix="/hyper_widget_icon">
         <file>icons/open.ico</file>

@@ -14,6 +14,7 @@ public:
         PluginLoad_Info,
         ThemeRecordInfo
     };
+    virtual ~Historical_Record() = default;
     InfoType            getParseType(){return type;}
     virtual QJsonObject generateJsonObject() const = 0;
     virtual QString     generateWritableJsonText()const  = 0;
@@ -31,7 +32,7 @@ struct PDF_Info_Historical_Record : Historical_Record
         static constexpr const char* PDF_PATH = "PDF_Path";
         static constexpr const char* PDF_CUR_PAGE = "current_page";
     };
-
+    virtual ~PDF_Info_Historical_Record() = default;
     QJsonObject generateJsonObject() const override;
     QString     generateWritableJsonText() const override;
 
@@ -49,6 +50,8 @@ struct PDF_SimpleServer_Record :  Historical_Record
     struct  PDF_SimpleServer_Record_KeyName{
         static constexpr const char* PDF_SIMPLE_SERVER = "PDF_SimpleSercer";
     };
+    virtual ~PDF_SimpleServer_Record() = default;
+
     SimpleSercerRecord      simpleType(){return simple_type;}
 protected:
     SimpleSercerRecord      simple_type;
@@ -61,7 +64,7 @@ struct BookLibrary_Record : PDF_SimpleServer_Record
     struct BookLibrary_Record_KeyName{
         static constexpr const char* BOOK_LIB_READ_DEF = "book_lib_load_default";
     };
-
+    virtual ~BookLibrary_Record() = default;
     BookLibrary_Record(QString lib_path):libPath(lib_path){registerType();}
     BookLibrary_Record(){registerType();}
     BookLibrary_Record(QJsonObject& single_req);
@@ -91,7 +94,6 @@ public:
         static constexpr const char* Exe = "exe";
         static constexpr const char* Dll = "dll";
     };
-
     Type inner_type() const {return t;}
 protected:
     Type t;
@@ -105,7 +107,7 @@ struct Plugin_ExeInfo : Plugin_Info
         :exe(_exePath), readAt(_readAt){type = InfoType::PluginLoad_Info;t = EXE;}
     Plugin_ExeInfo(){type = InfoType::PluginLoad_Info;t = EXE;}
     Plugin_ExeInfo(QJsonObject& single_req);
-    ~Plugin_ExeInfo() = default;
+    virtual ~Plugin_ExeInfo() = default;
     QJsonObject generateJsonObject() const override;
     QString     generateWritableJsonText() const override;
     struct Plugin_Exe_Key_Name{
@@ -129,7 +131,7 @@ struct Plugin_DLLInfo : Plugin_Info
     {type = InfoType::PluginLoad_Info;t = DLL;}
     Plugin_DLLInfo(){type = InfoType::PluginLoad_Info;t = DLL;}
     Plugin_DLLInfo(QJsonObject& single_req);
-    ~Plugin_DLLInfo() = default;
+    virtual ~Plugin_DLLInfo() = default;
     struct Plugin_Info_Key_Name{
         static constexpr const char* PluginDependencyDir = "PluginDependencyDir";
         static constexpr const char* PluginDLLPath = "PluginDLLPath";
@@ -151,7 +153,7 @@ struct ThemeRecord : Historical_Record
     struct ThemeRecordKey{
         static constexpr const char* ThemeQRC = "qrc";
     };
-    ~ThemeRecord() = default;
+    virtual ~ThemeRecord() = default;
     ThemeRecord(QString qrc):themeQRC(qrc){type = InfoType::ThemeRecordInfo;}
     ThemeRecord(){type = InfoType::ThemeRecordInfo;}
     ThemeRecord(QJsonObject& single_req);

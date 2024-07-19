@@ -148,11 +148,11 @@ void CCPDF_MainWindowToolBarConfigure::doConfig(QToolBar* bar)
     connect(btn_about, &QPushButton::clicked, this->window, &CCPDFView_MainWindow::showAbout);
     bar->addSeparator();
 
-//    // help
-//    QPushButton* btn_help = new QPushButton(bar);
-//    bar->addWidget(btn_help);
-//    btn_help->setToolTip("帮助...");
-//    btn_help->setIcon(QIcon(":/Ui/icons/help.png"));
-//    connect(btn_help, &QPushButton::clicked, this->window, &CCPDFView_MainWindow::viewHelp);
-//    bar->addSeparator();
+    // help
+    QPushButton* btn_help = new QPushButton(bar);
+    bar->addWidget(btn_help);
+    btn_help->setToolTip("帮助...");
+    btn_help->setIcon(QIcon(":/toolbar_icon/icons/help.png"));
+    connect(btn_help, &QPushButton::clicked, this->window, &CCPDFView_MainWindow::showHelp);
+    bar->addSeparator();
 }
