@@ -15,7 +15,8 @@ static constexpr const char* TABS[]{
     "检索",
     "PDF链接",    // 10
     "关于",
-    "帮助:但是是自身"
+    "帮助:但是是自身",
+    "快捷键一览"
 };
 
 static constexpr const char* TAB_FILE[]{
@@ -30,7 +31,8 @@ static constexpr const char* TAB_FILE[]{
     __DocDir"Searching.md",
     __DocDir"PDF_Link.md",      // 10
     __DocDir"About.md",
-    __DocDir"Help.md"          // 12
+    __DocDir"Help.md",
+    __DocDir"Key_Sequences.md"     // 13
 };
 
 static constexpr short TAB_N = sizeof(TAB_FILE) / sizeof(const char*);
@@ -41,6 +43,7 @@ CCPDF_HelpWindow::CCPDF_HelpWindow(QWidget *parent) :
     ui(new Ui::CCPDF_HelpWindow)
 {
     ui->setupUi(this);
+    setWindowTitle("帮助窗口");
     configMap();
     registerTabs();
 }

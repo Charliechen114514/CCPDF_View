@@ -112,6 +112,15 @@ void CCPDF_TranslationWidget::setEXE(const QString& res)
     }
 }
 
+void CCPDF_TranslationWidget::opposeVisiSettings(){
+    settingVisiblity = !settingVisiblity;
+    ui->widget_settings->setVisible(settingVisiblity);
+    ui->btn_setSettingsVisible->setText(
+        settingVisiblity ? "收起设置板" : "展开设置板"
+    );
+}
+
+
 void CCPDF_TranslationWidget::registerOrUpdate()
 {
     if(histroyHolder)
@@ -184,4 +193,8 @@ void CCPDF_TranslationWidget::on_btn_copyToClipBoard_clicked()
     QApplication::clipboard()->setText(ui->result_textBrowser->toPlainText());
 }
 
+
 #endif
+
+
+

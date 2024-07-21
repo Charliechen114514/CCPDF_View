@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1410</width>
-    <height>833</height>
+    <width>1244</width>
+    <height>737</height>
    </rect>
   </property>
   <property name="focusPolicy">
@@ -21,404 +21,420 @@
     <normaloff>:/windowIcon/icons/mainWindow.ico</normaloff>:/windowIcon/icons/mainWindow.ico</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QHBoxLayout" name="horizontalLayout">
-    <item>
-     <widget class="CCPDF_BookMarkWidget" name="bookMarkWidget" native="true">
-      <property name="minimumSize">
-       <size>
-        <width>250</width>
-        <height>0</height>
-       </size>
+   <layout class="QGridLayout" name="gridLayout_3">
+    <item row="0" column="0">
+     <widget class="QSplitter" name="splitter">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
       </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="CCPDF_MdiArea" name="main_mdi_widget" native="true">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>3</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
+      <property name="handleWidth">
+       <number>2</number>
       </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QWidget" name="hyper_operate_widget" native="true">
-      <property name="minimumSize">
-       <size>
-        <width>250</width>
-        <height>0</height>
-       </size>
-      </property>
-      <layout class="QGridLayout" name="gridLayout">
-       <item row="0" column="1">
-        <widget class="QToolBox" name="hpw_pdf_tool_box">
-         <property name="currentIndex">
-          <number>1</number>
-         </property>
-         <widget class="QWidget" name="historical_page">
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>274</width>
-            <height>527</height>
-           </rect>
+      <widget class="CCPDF_BookMarkWidget" name="bookMarkWidget" native="true">
+       <property name="minimumSize">
+        <size>
+         <width>250</width>
+         <height>0</height>
+        </size>
+       </property>
+      </widget>
+      <widget class="CCPDF_MdiArea" name="main_mdi_widget" native="true">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+         <horstretch>3</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>400</width>
+         <height>0</height>
+        </size>
+       </property>
+      </widget>
+      <widget class="QWidget" name="hyper_operate_widget" native="true">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>250</width>
+         <height>0</height>
+        </size>
+       </property>
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="0" column="1">
+         <widget class="QToolBox" name="hpw_pdf_tool_box">
+          <property name="currentIndex">
+           <number>0</number>
           </property>
-          <attribute name="icon">
-           <iconset resource="../../resources/configs.qrc">
-            <normaloff>:/hyper_widget_icon/icons/history.ico</normaloff>:/hyper_widget_icon/icons/history.ico</iconset>
-          </attribute>
-          <attribute name="label">
-           <string>浏览记录</string>
-          </attribute>
-          <layout class="QGridLayout" name="gridLayout_2">
-           <item row="0" column="0">
-            <widget class="QTableWidget" name="historical_tableWidget">
-             <property name="contextMenuPolicy">
-              <enum>Qt::CustomContextMenu</enum>
-             </property>
-             <property name="acceptDrops">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-         <widget class="QWidget" name="pg_page_control">
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>236</width>
-            <height>527</height>
-           </rect>
-          </property>
-          <attribute name="icon">
-           <iconset resource="../../resources/configs.qrc">
-            <normaloff>:/hyper_widget_icon/icons/pageNavigate.png</normaloff>:/hyper_widget_icon/icons/pageNavigate.png</iconset>
-          </attribute>
-          <attribute name="label">
-           <string>页面操作</string>
-          </attribute>
-          <layout class="QVBoxLayout" name="verticalLayout_7">
-           <item>
-            <widget class="QWidget" name="page_navigate_btns_widget" native="true">
-             <widget class="QPushButton" name="btn_pageBack">
-              <property name="geometry">
-               <rect>
-                <x>9</x>
-                <y>67</y>
-                <width>80</width>
-                <height>50</height>
-               </rect>
+          <widget class="QWidget" name="historical_page">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>274</width>
+             <height>431</height>
+            </rect>
+           </property>
+           <attribute name="icon">
+            <iconset resource="../../resources/configs.qrc">
+             <normaloff>:/hyper_widget_icon/icons/history.ico</normaloff>:/hyper_widget_icon/icons/history.ico</iconset>
+           </attribute>
+           <attribute name="label">
+            <string>浏览记录</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_2">
+            <item row="0" column="0">
+             <widget class="QTableWidget" name="historical_tableWidget">
+              <property name="contextMenuPolicy">
+               <enum>Qt::CustomContextMenu</enum>
               </property>
-              <property name="minimumSize">
-               <size>
-                <width>60</width>
-                <height>50</height>
-               </size>
-              </property>
-              <property name="text">
-               <string>前一页</string>
-              </property>
-              <property name="icon">
-               <iconset resource="../../resources/configs.qrc">
-                <normaloff>:/operation_functional/icons/toPrev.png</normaloff>:/operation_functional/icons/toPrev.png</iconset>
+              <property name="acceptDrops">
+               <bool>true</bool>
               </property>
              </widget>
-             <widget class="QPushButton" name="btn_pageForward">
-              <property name="geometry">
-               <rect>
-                <x>110</x>
-                <y>67</y>
-                <width>80</width>
-                <height>50</height>
-               </rect>
-              </property>
-              <property name="minimumSize">
-               <size>
-                <width>60</width>
-                <height>50</height>
-               </size>
-              </property>
-              <property name="text">
-               <string>后一页</string>
-              </property>
-              <property name="icon">
-               <iconset resource="../../resources/configs.qrc">
-                <normaloff>:/operation_functional/icons/toNext.png</normaloff>:/operation_functional/icons/toNext.png</iconset>
-              </property>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="pg_page_control">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>274</width>
+             <height>431</height>
+            </rect>
+           </property>
+           <attribute name="icon">
+            <iconset resource="../../resources/configs.qrc">
+             <normaloff>:/hyper_widget_icon/icons/pageNavigate.png</normaloff>:/hyper_widget_icon/icons/pageNavigate.png</iconset>
+           </attribute>
+           <attribute name="label">
+            <string>页面操作</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_7">
+            <item>
+             <widget class="QWidget" name="page_navigate_btns_widget" native="true">
+              <widget class="QPushButton" name="btn_pageBack">
+               <property name="geometry">
+                <rect>
+                 <x>9</x>
+                 <y>67</y>
+                 <width>80</width>
+                 <height>50</height>
+                </rect>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>60</width>
+                 <height>50</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>前一页</string>
+               </property>
+               <property name="icon">
+                <iconset resource="../../resources/configs.qrc">
+                 <normaloff>:/operation_functional/icons/toPrev.png</normaloff>:/operation_functional/icons/toPrev.png</iconset>
+               </property>
+              </widget>
+              <widget class="QPushButton" name="btn_pageForward">
+               <property name="geometry">
+                <rect>
+                 <x>110</x>
+                 <y>67</y>
+                 <width>80</width>
+                 <height>50</height>
+                </rect>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>60</width>
+                 <height>50</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>后一页</string>
+               </property>
+               <property name="icon">
+                <iconset resource="../../resources/configs.qrc">
+                 <normaloff>:/operation_functional/icons/toNext.png</normaloff>:/operation_functional/icons/toNext.png</iconset>
+               </property>
+              </widget>
+              <widget class="QPushButton" name="btn_toBegin">
+               <property name="geometry">
+                <rect>
+                 <x>9</x>
+                 <y>166</y>
+                 <width>80</width>
+                 <height>50</height>
+                </rect>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>50</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>第一页</string>
+               </property>
+               <property name="icon">
+                <iconset resource="../../resources/configs.qrc">
+                 <normaloff>:/operation_functional/icons/firstPage.png</normaloff>:/operation_functional/icons/firstPage.png</iconset>
+               </property>
+              </widget>
+              <widget class="QPushButton" name="btn_toEnd">
+               <property name="geometry">
+                <rect>
+                 <x>110</x>
+                 <y>166</y>
+                 <width>80</width>
+                 <height>50</height>
+                </rect>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>50</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>最后一页</string>
+               </property>
+               <property name="icon">
+                <iconset resource="../../resources/configs.qrc">
+                 <normaloff>:/operation_functional/icons/lastPage.png</normaloff>:/operation_functional/icons/lastPage.png</iconset>
+               </property>
+              </widget>
              </widget>
-             <widget class="QPushButton" name="btn_toBegin">
-              <property name="geometry">
-               <rect>
-                <x>9</x>
-                <y>166</y>
-                <width>80</width>
-                <height>50</height>
-               </rect>
-              </property>
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>50</height>
-               </size>
-              </property>
-              <property name="text">
-               <string>第一页</string>
-              </property>
-              <property name="icon">
-               <iconset resource="../../resources/configs.qrc">
-                <normaloff>:/operation_functional/icons/firstPage.png</normaloff>:/operation_functional/icons/firstPage.png</iconset>
-              </property>
-             </widget>
-             <widget class="QPushButton" name="btn_toEnd">
-              <property name="geometry">
-               <rect>
-                <x>110</x>
-                <y>166</y>
-                <width>80</width>
-                <height>50</height>
-               </rect>
-              </property>
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>50</height>
-               </size>
-              </property>
-              <property name="text">
-               <string>最后一页</string>
-              </property>
-              <property name="icon">
-               <iconset resource="../../resources/configs.qrc">
-                <normaloff>:/operation_functional/icons/lastPage.png</normaloff>:/operation_functional/icons/lastPage.png</iconset>
-              </property>
-             </widget>
-            </widget>
-           </item>
-           <item>
-            <widget class="QWidget" name="page_navigate_text_widget" native="true">
-             <layout class="QVBoxLayout" name="verticalLayout">
-              <item>
-               <widget class="QLineEdit" name="page_navi_reminder">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
-                <property name="text">
-                 <string>跳转到正文页码：</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPdfPageSelector" name="PDFSelectionWidget" native="true">
-                <property name="minimumSize">
-                 <size>
-                  <width>200</width>
-                  <height>0</height>
-                 </size>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item>
-            <widget class="QWidget" name="widget" native="true">
-             <layout class="QVBoxLayout" name="verticalLayout_4">
-              <item>
-               <widget class="QLineEdit" name="lineEdit">
-                <property name="text">
-                 <string>浏览模式</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="btn_sigPage">
-                <property name="minimumSize">
-                 <size>
-                  <width>0</width>
-                  <height>35</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>单页浏览</string>
-                </property>
-                <property name="icon">
-                 <iconset resource="../../resources/configs.qrc">
-                  <normaloff>:/toolbar_icon/icons/singlePage.png</normaloff>:/toolbar_icon/icons/singlePage.png</iconset>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="btn_multiPage">
-                <property name="minimumSize">
-                 <size>
-                  <width>0</width>
-                  <height>35</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>多页浏览</string>
-                </property>
-                <property name="icon">
-                 <iconset resource="../../resources/configs.qrc">
-                  <normaloff>:/toolbar_icon/icons/multiPage.png</normaloff>:/toolbar_icon/icons/multiPage.png</iconset>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-         <widget class="QWidget" name="page_history">
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>296</width>
-            <height>527</height>
-           </rect>
-          </property>
-          <attribute name="icon">
-           <iconset resource="../../resources/configs.qrc">
-            <normaloff>:/hyper_widget_icon/icons/OCR_current.png</normaloff>:/hyper_widget_icon/icons/OCR_current.png</iconset>
-          </attribute>
-          <attribute name="label">
-           <string>文本提取</string>
-          </attribute>
-          <layout class="QVBoxLayout" name="verticalLayout_2">
-           <item>
-            <widget class="QTabWidget" name="textFetch_tabWidget">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="currentIndex">
-              <number>0</number>
-             </property>
-             <widget class="QWidget" name="tab">
-              <attribute name="title">
-               <string>标准文本提取</string>
-              </attribute>
-              <layout class="QVBoxLayout" name="verticalLayout_3">
+            </item>
+            <item>
+             <widget class="QWidget" name="page_navigate_text_widget" native="true">
+              <layout class="QVBoxLayout" name="verticalLayout">
                <item>
-                <widget class="QPushButton" name="btn_copyText2ClipBoard">
-                 <property name="minimumSize">
-                  <size>
-                   <width>0</width>
-                   <height>50</height>
-                  </size>
+                <widget class="QLineEdit" name="page_navi_reminder">
+                 <property name="enabled">
+                  <bool>false</bool>
                  </property>
                  <property name="text">
-                  <string>复制到粘贴板</string>
+                  <string>跳转到正文页码：</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QTextBrowser" name="pdftextBrowser"/>
+                <widget class="QPdfPageSelector" name="PDFSelectionWidget" native="true">
+                 <property name="minimumSize">
+                  <size>
+                   <width>200</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                </widget>
                </item>
               </layout>
              </widget>
-            </widget>
-           </item>
-          </layout>
+            </item>
+            <item>
+             <widget class="QWidget" name="widget" native="true">
+              <layout class="QVBoxLayout" name="verticalLayout_4">
+               <item>
+                <widget class="QLineEdit" name="lineEdit">
+                 <property name="text">
+                  <string>浏览模式</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="btn_sigPage">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>35</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>单页浏览</string>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="../../resources/configs.qrc">
+                   <normaloff>:/toolbar_icon/icons/singlePage.png</normaloff>:/toolbar_icon/icons/singlePage.png</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="btn_multiPage">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>35</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>多页浏览</string>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="../../resources/configs.qrc">
+                   <normaloff>:/toolbar_icon/icons/multiPage.png</normaloff>:/toolbar_icon/icons/multiPage.png</iconset>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="page_history">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>274</width>
+             <height>431</height>
+            </rect>
+           </property>
+           <attribute name="icon">
+            <iconset resource="../../resources/configs.qrc">
+             <normaloff>:/hyper_widget_icon/icons/OCR_current.png</normaloff>:/hyper_widget_icon/icons/OCR_current.png</iconset>
+           </attribute>
+           <attribute name="label">
+            <string>文本提取</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_2">
+            <item>
+             <widget class="QTabWidget" name="textFetch_tabWidget">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="currentIndex">
+               <number>0</number>
+              </property>
+              <widget class="QWidget" name="tab">
+               <attribute name="title">
+                <string>标准文本提取</string>
+               </attribute>
+               <layout class="QVBoxLayout" name="verticalLayout_3">
+                <item>
+                 <widget class="QPushButton" name="btn_copyText2ClipBoard">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>50</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string>复制到粘贴板</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QTextBrowser" name="pdftextBrowser"/>
+                </item>
+               </layout>
+              </widget>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="page">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>274</width>
+             <height>431</height>
+            </rect>
+           </property>
+           <attribute name="icon">
+            <iconset resource="../../resources/configs.qrc">
+             <normaloff>:/hyper_widget_icon/icons/translate.png</normaloff>:/hyper_widget_icon/icons/translate.png</iconset>
+           </attribute>
+           <attribute name="label">
+            <string>文本翻译</string>
+           </attribute>
+           <layout class="QHBoxLayout" name="horizontalLayout_3">
+            <item>
+             <widget class="CCPDF_TranslationWidget" name="translation_widget" native="true"/>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="book_library_page">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>274</width>
+             <height>431</height>
+            </rect>
+           </property>
+           <attribute name="icon">
+            <iconset resource="../../resources/configs.qrc">
+             <normaloff>:/hyper_widget_icon/icons/booklib.ico</normaloff>:/hyper_widget_icon/icons/booklib.ico</iconset>
+           </attribute>
+           <attribute name="label">
+            <string>书库检索</string>
+           </attribute>
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <item>
+             <widget class="CCPDF_BookLibraryWidget" name="book_lib_searching_widget" native="true"/>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="linkspage">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>274</width>
+             <height>431</height>
+            </rect>
+           </property>
+           <attribute name="icon">
+            <iconset resource="../../resources/configs.qrc">
+             <normaloff>:/hyper_widget_icon/icons/link.png</normaloff>:/hyper_widget_icon/icons/link.png</iconset>
+           </attribute>
+           <attribute name="label">
+            <string>链接</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_6">
+            <item>
+             <widget class="CCPDF_LinkWidget" name="linkListWidget" native="true"/>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="search_page">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>274</width>
+             <height>431</height>
+            </rect>
+           </property>
+           <attribute name="icon">
+            <iconset resource="../../resources/configs.qrc">
+             <normaloff>:/hyper_widget_icon/icons/searching.png</normaloff>:/hyper_widget_icon/icons/searching.png</iconset>
+           </attribute>
+           <attribute name="label">
+            <string>检索</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_5">
+            <item>
+             <widget class="CCPDF_SearchWidget" name="searchWidget" native="true"/>
+            </item>
+           </layout>
+          </widget>
          </widget>
-         <widget class="QWidget" name="page">
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>232</width>
-            <height>527</height>
-           </rect>
-          </property>
-          <attribute name="icon">
-           <iconset resource="../../resources/configs.qrc">
-            <normaloff>:/hyper_widget_icon/icons/translate.png</normaloff>:/hyper_widget_icon/icons/translate.png</iconset>
-          </attribute>
-          <attribute name="label">
-           <string>文本翻译</string>
-          </attribute>
-          <layout class="QHBoxLayout" name="horizontalLayout_3">
-           <item>
-            <widget class="CCPDF_TranslationWidget" name="translation_widget" native="true"/>
-           </item>
-          </layout>
-         </widget>
-         <widget class="QWidget" name="book_library_page">
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>232</width>
-            <height>527</height>
-           </rect>
-          </property>
-          <attribute name="icon">
-           <iconset resource="../../resources/configs.qrc">
-            <normaloff>:/hyper_widget_icon/icons/booklib.ico</normaloff>:/hyper_widget_icon/icons/booklib.ico</iconset>
-          </attribute>
-          <attribute name="label">
-           <string>书库检索</string>
-          </attribute>
-          <layout class="QHBoxLayout" name="horizontalLayout_2">
-           <item>
-            <widget class="CCPDF_BookLibraryWidget" name="book_lib_searching_widget" native="true"/>
-           </item>
-          </layout>
-         </widget>
-         <widget class="QWidget" name="linkspage">
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>232</width>
-            <height>527</height>
-           </rect>
-          </property>
-          <attribute name="icon">
-           <iconset resource="../../resources/configs.qrc">
-            <normaloff>:/hyper_widget_icon/icons/link.png</normaloff>:/hyper_widget_icon/icons/link.png</iconset>
-          </attribute>
-          <attribute name="label">
-           <string>链接</string>
-          </attribute>
-          <layout class="QVBoxLayout" name="verticalLayout_6">
-           <item>
-            <widget class="CCPDF_LinkWidget" name="linkListWidget" native="true"/>
-           </item>
-          </layout>
-         </widget>
-         <widget class="QWidget" name="search_page">
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>232</width>
-            <height>527</height>
-           </rect>
-          </property>
-          <attribute name="icon">
-           <iconset resource="../../resources/configs.qrc">
-            <normaloff>:/hyper_widget_icon/icons/searching.png</normaloff>:/hyper_widget_icon/icons/searching.png</iconset>
-          </attribute>
-          <attribute name="label">
-           <string>检索</string>
-          </attribute>
-          <layout class="QVBoxLayout" name="verticalLayout_5">
-           <item>
-            <widget class="CCPDF_SearchWidget" name="searchWidget" native="true"/>
-           </item>
-          </layout>
-         </widget>
-        </widget>
-       </item>
-      </layout>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </item>
    </layout>
@@ -428,7 +444,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1410</width>
+     <width>1244</width>
      <height>21</height>
     </rect>
    </property>

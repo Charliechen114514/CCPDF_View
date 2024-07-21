@@ -4,6 +4,14 @@
 
 CCPDFView_Seta is a concise lightweight PDF reader program that is currently in the testing phase.
 
+## Update 1
+
+Updates:
+
+- Added shortcut key help (introduce shortcut keys)
+- Add the function of hiding the menu bar and translation bar
+- Completed some shortcut keys for operations (refer to shortcut key help for details)
+
 ## Functionalities Current
 
 ### Currently supported features:

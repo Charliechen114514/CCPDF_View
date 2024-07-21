@@ -29,7 +29,6 @@ void CCPDF_Loader::helpSetSelector(QPdfPageSelector* l)
 QImage CCPDF_Loader::passCurrentImage(int page, QSize size)
 {
     QImage transparentImage(core_document->render(page, size));
-
     // 创建一个新的QImage对象，大小与透明图片相同，并用白色填充背景
     QImage whiteBackgroundImage(transparentImage.size(), QImage::Format_RGB32);
     whiteBackgroundImage.fill(QColor(Qt::white).rgb());

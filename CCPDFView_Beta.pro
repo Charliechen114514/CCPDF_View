@@ -31,6 +31,7 @@ SOURCES += Core/CCPDFView_Loader/ccpdf_loader.cpp \
     Core/CCPDF_PDFPageNavigator/ccpdf_pdfpagenavigator.cpp \
     Core/CCPDF_PdfServer/ccpdf_pdfserver.cpp \
     Core/CCPDF_PdfView/ccpdf_mypdfview.cpp \
+    Core/CCPDF_SelectionRecorder/ccpdf_selectionrecorder.cpp \
     Core/CCPDF_SinglePDF_Component/ccpdf_singlepdf_widget.cpp \
     Core/CCPDF_TextHelper/ccpdf_texthelper.cpp \
     Core/CCPDF_Utils/ccpdf_fileutils.cpp \
@@ -83,6 +84,7 @@ HEADERS += CCPDF_Global.h \
     Core/CCPDF_PDFPageNavigator/ccpdf_pdfpagenavigator.h \
     Core/CCPDF_PdfServer/ccpdf_pdfserver.h \
     Core/CCPDF_PdfView/ccpdf_mypdfview.h \
+    Core/CCPDF_SelectionRecorder/ccpdf_selectionrecorder.h \
     Core/CCPDF_SinglePDF_Component/ccpdf_singlepdf_widget.h \
     Core/CCPDF_TextHelper/ccpdf_texthelper.h \
     Core/CCPDF_Utils/CCPDF_StringParseUtil.h \
@@ -144,12 +146,18 @@ FORMS += \
 DEFINES += \ # CHECK_MEMORY \
            SUPPORT_TESS_OCR \
            SUPPORT_TRANSLATION \
+           PURE_RELEASE
 
 
-DEFINES +=  __MAJOR_VERSION=0 \
-            __MINOR_VERISON=3
+DEFINES +=  __MAJOR_VERSION=1 \
+            __MINOR_VERISON=0
 
-
+CONFIG (release, debug|release) {
+    contains(DEFINES, PURE_RELEASE){
+        DEFINES += QT_NO_WARNING_OUTPUT
+        DEFINES += QT_NO_DEBUG_OUTPUT
+    }
+}
 
 contains(DEFINES, SUPPORT_TESS_OCR){
 HEADERS +=  \
@@ -188,8 +196,8 @@ COPY_FILES.files = $$COPY_DIR/About.md \
                    $$COPY_DIR/Searching.md \
                    $$COPY_DIR/SwitchThemes.md \
                    $$COPY_DIR/TextGrabber.md \
-                   $$COPY_DIR/Help.md
-                   $$COPY_DIR/Browse_PDF/*
+                   $$COPY_DIR/Help.md \
+                   $$COPY_DIR/Key_Sequences.md
 
 COPY_FILES.path = Documentation/
 

@@ -2,6 +2,7 @@
 #include <QEvent>
 #include <QValidator>
 #include <QMimeData>
+#include <QSplitter>
 #include "CCPDF_ThemeAction/ccpdf_theme_action.h"
 #include "CCPDF_ThemeActionHelper/ccpdf_themeactionhelper.h"
 #include "CCPDF_BookMarkManager/ccpdf_bookmarkmanager.h"
@@ -115,13 +116,16 @@ void CCPDFView_MainWindow::initPluginMemory()
 
 void CCPDFView_MainWindow::configUi()
 {
+    setWindowTitle("CCPDF_View PDF浏览器");
     configWidgetsVisible();
     loadTheme();
 }
+
 void CCPDFView_MainWindow::configWidgetsVisible()
 {
     ui->bookMarkWidget->setVisible(bookModelVisible);
     ui->hyper_operate_widget->setVisible(hyperWidgetVisible);
+    ui->toolBar->setVisible(toolBarVisible);
 }
 
 void CCPDFView_MainWindow::loadTheme()
@@ -330,12 +334,21 @@ void CCPDFView_MainWindow::registerKeyEvents()
         Qt::Modifier::CTRL | Qt::Modifier::SHIFT
     );
     windowEventHelper->registerKeyEvents(
+        Qt::Key_F1, std::bind(&CCPDFView_MainWindow::opposeToolBarVisible, this)
+    );
+    windowEventHelper->registerKeyEvents(
         Qt::Key_R, std::bind(&CCPDF_MdiArea::activateNextSubWindow, ui->main_mdi_widget),
         Qt::Modifier::CTRL
     );
     windowEventHelper->registerKeyEvents(
         Qt::Key_L, std::bind(&CCPDF_MdiArea::activatePreviousSubWindow, ui->main_mdi_widget),
         Qt::Modifier::CTRL
+    );
+    windowEventHelper->registerKeyEvents(
+        Qt::Key_Up,std::bind(&CCPDFView_MainWindow::zoomIn, this)
+    );
+    windowEventHelper->registerKeyEvents(
+        Qt::Key_Down,std::bind(&CCPDFView_MainWindow::zoomOut, this)
     );
 }
 
@@ -745,16 +758,39 @@ void CCPDFView_MainWindow::handleMultiPageChange()
     updateOldRecord(pdfServer->current_widget());
 }
 
+static void __pvtHelpChangeIndex(QList<int>& sizes, int index, int new_size)
+{
+    if(index < 0 || index >= sizes.size()) return;
+    sizes[index] = new_size;
+}
+
 void CCPDFView_MainWindow::opposeHyperWidgetVisible()
 {
     hyperWidgetVisible = !hyperWidgetVisible;
     ui->hyper_operate_widget->setVisible(hyperWidgetVisible);
+    auto sizes_ref = ui->splitter->sizes();
+    __pvtHelpChangeIndex(sizes_ref,
+                         ui->splitter->indexOf(ui->hyper_operate_widget),
+                         ui->hyper_operate_widget->minimumWidth());
+    ui->splitter->setSizes(sizes_ref);
 }
 
 void CCPDFView_MainWindow::opposeBookModelVisible()
 {
     bookModelVisible = !bookModelVisible;
     ui->bookMarkWidget->setVisible(bookModelVisible);
+    auto sizes_ref = ui->splitter->sizes();
+    __pvtHelpChangeIndex(sizes_ref,
+                         ui->splitter->indexOf(ui->bookMarkWidget),
+                         ui->bookMarkWidget->minimumWidth());
+    ui->splitter->setSizes(sizes_ref);
+}
+
+void CCPDFView_MainWindow::opposeToolBarVisible()
+{
+    toolBarVisible = !toolBarVisible;
+    ui->toolBar->setVisible(toolBarVisible);
+    ui->menubar->setVisible(toolBarVisible);
 }
 
 void CCPDFView_MainWindow::updateHistWidget()
@@ -894,7 +930,9 @@ void CCPDFView_MainWindow::udpateCurrentFocusWidgets(CCPDF_SinglePDF_Widget* new
 {
     pdfServer->updateGlobal(newWidgets, statusLabel, ui->PDFSelectionWidget);
     pdfPlugins->updateAllBindPdfWidget(newWidgets);
-    setCurrentPageText();
+    if(newWidgets){ // If current widget is availible, then do set!
+        setCurrentPageText();
+    }
 }
 
 void CCPDFView_MainWindow::handleBookMarkJump(const int page, const qreal zoomLevel)
@@ -970,6 +1008,15 @@ void CCPDFView_MainWindow::wheelEvent(QWheelEvent* e)
     WindowEventHelper::MouseProcess::WHEEL_UP:  // if y > 0 -> Up
     WindowEventHelper::MouseProcess::WHEEL_DOWN); // else Down
 }
+
+void CCPDFView_MainWindow::mousePressEvent(QMouseEvent* e)
+{
+    if(e->button() == Qt::LeftButton)
+    {
+        opposeToolBarVisible();
+    }
+}
+
 
 void CCPDFView_MainWindow::dragEnterEvent(QDragEnterEvent* env)
 {

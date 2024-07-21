@@ -12,6 +12,7 @@ void CCPDF_HelpingBuildHelper::addTabTo(QTabWidget* w, const QString& tabName, c
     QFont f;
     f.setPointSize(20);
     browser->setFont(f);
+    browser->setOpenExternalLinks(true);
     browser->setReadOnly(true);
     w->addTab(browser, tabName);
     if(CCPDF_FileUtils::FileUtils::isFileExsits(helpFile)){

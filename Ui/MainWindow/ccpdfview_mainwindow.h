@@ -88,6 +88,7 @@ public:
 // ------------------------------------------------------
     void    opposeHyperWidgetVisible();
     void    opposeBookModelVisible();
+    void    opposeToolBarVisible();
 // ------------------------------------------------------
 //  handleRunTime Ui Change Required
 // ------------------------------------------------------
@@ -131,6 +132,7 @@ public slots:
     void                        keyPressEvent(QKeyEvent*);
     void                        keyReleaseEvent(QKeyEvent*);
     void                        wheelEvent(QWheelEvent*);
+    void                        mousePressEvent(QMouseEvent*);
     void                        dragEnterEvent(QDragEnterEvent* env);
     void                        dropEvent(QDropEvent*);
 
@@ -267,6 +269,7 @@ private:
     Ui::CCPDFView_MainWindow*                       ui;
     bool                                            hyperWidgetVisible {INIT_PARAMS::HYPER_WID_VISIBLE};
     bool                                            bookModelVisible{INIT_PARAMS::BOOKMODEL_VISIBLE};
+    bool                                            toolBarVisible{INIT_PARAMS::TOOLBAR_VISIBLE};
     __MEMEROY_HOLD_BY_OBJ_TREE
     QLabel*                                         statusLabel;
     __MEMEROY_HOLD_BY_SMT_PTR

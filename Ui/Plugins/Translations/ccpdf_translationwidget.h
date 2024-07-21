@@ -41,11 +41,15 @@ private slots:
     __BIND_Ui_Widgets   void on_btn_set_exe_clicked(){setEXE();}
     __BIND_Ui_Widgets   void on_btn_set_output_read_clicked(){setOutPut();}
     __BIND_Ui_Widgets   void on_btn_depatch_clicked(){makeRun();}
+    __BIND_Ui_Widgets   void on_btn_setSettingsVisible_clicked(){opposeVisiSettings();}
+    void on_btn_copyToClipBoard_clicked();
 private:
     void                setInput();
     bool                checkRunnable();
     void                registerOrUpdate();
+    void                opposeVisiSettings();
     bool                setAutoTranslate{false};
+    bool                settingVisiblity{false};
     QString             exe;
     QString             outPut;
 
@@ -53,8 +57,6 @@ private:
     Plugin_HistoricalHelper*                        histroyHolder;
     __MEMEROY_NO_HOLD   CCPDF_ExternTranslation*    translations;
 #endif
-private slots:
-    void on_btn_copyToClipBoard_clicked();
 };
 
 #endif // CCPDF_TRANSLATIONWIDGET_H

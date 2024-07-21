@@ -15,10 +15,10 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
-    <widget class="QWidget" name="widget_2" native="true">
+    <widget class="QWidget" name="widget_settings" native="true">
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <widget class="QWidget" name="widget" native="true">
+       <widget class="QWidget" name="widget_settings_inners" native="true">
         <layout class="QGridLayout" name="gridLayout">
          <item row="0" column="0">
           <widget class="QPushButton" name="btn_set_output_read">
@@ -67,6 +67,13 @@
     </widget>
    </item>
    <item>
+    <widget class="QPushButton" name="btn_setSettingsVisible">
+     <property name="text">
+      <string>收起设置板</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QPushButton" name="btn_setAutoTrans">
      <property name="text">
       <string>自动翻译: </string>
@@ -109,6 +116,19 @@
     </widget>
    </item>
    <item>
+    <widget class="QPushButton" name="btn_copyToClipBoard">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>40</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>复制翻译结果</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QTextBrowser" name="result_textBrowser"/>
    </item>
    <item>
@@ -121,19 +141,6 @@
      </property>
      <property name="text">
       <string>运行插件程序</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QPushButton" name="btn_copyToClipBoard">
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>60</height>
-      </size>
-     </property>
-     <property name="text">
-      <string>复制翻译结果</string>
      </property>
     </widget>
    </item>
