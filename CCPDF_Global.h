@@ -46,10 +46,12 @@
 // Zoom Params Define
 namespace INIT_PARAMS
 {
-    static constexpr    double  ZOOM_INIT           = 1.0;
-    static constexpr    bool    HYPER_WID_VISIBLE   = false;
-    static constexpr    bool    BOOKMODEL_VISIBLE   = false;
-    static constexpr    bool    SELECTION_VISIBLE   = false;
+    static constexpr    double  ZOOM_INIT[[maybe_unused]]           = 1.0;
+    static constexpr    bool    HYPER_WID_VISIBLE[[maybe_unused]]   = false;
+    static constexpr    bool    BOOKMODEL_VISIBLE[[maybe_unused]]   = false;
+    static constexpr    bool    SELECTION_VISIBLE[[maybe_unused]]   = false;
+    static constexpr    bool    TOOLBAR_VISIBLE[[maybe_unused]]     = true;
+    static constexpr    bool    MDISUB_VISIBLE[[maybe_unused]]      = true;
 };
 
 
