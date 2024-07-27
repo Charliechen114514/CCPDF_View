@@ -1,20 +1,16 @@
-#include <QClipboard>
 #include "ccpdf_translationwidget.h"
 #include "ui_ccpdf_translationwidget.h"
 
 #ifdef SUPPORT_TRANSLATION
+#include <QClipboard>
+#include <QParallelAnimationGroup>
 #include "CCPDF_Historical/FileRecord/ccpdf_historicalrecordhelper.h"
+#include "CCPDF_Animanations/ccpdf_animanations.h"
 #include "CCPDF_Utils/ccpdf_fileutils.h"
 #include "CCPDF_Utils/ccpdf_messgaeboxutils.h"
 #include "CCPDF_Error_Helper/CCPDF_ErrorHelper.h"
 #endif
-
-static void __pvt_handleBtnTextTrans(QPushButton* btn, bool state)
-{
-    if(state)   btn->setText("自动翻译: 开");
-    else        btn->setText("自动翻译: 关");
-}
-
+static void __pvt_handleBtnTextTrans(QPushButton* btn, bool state);
 
 
 CCPDF_TranslationWidget::CCPDF_TranslationWidget(QWidget *parent) :
@@ -30,7 +26,9 @@ CCPDF_TranslationWidget::CCPDF_TranslationWidget(QWidget *parent) :
     QFont font("Microsoft YaHei", 12);  // 使用支持中文的字体，如微软雅黑
     ui->result_textBrowser->setFont(font);
     __pvt_handleBtnTextTrans(ui->btn_setAutoTrans, setAutoTranslate);
-    connect(ui->btn_setAutoTrans, &QPushButton::clicked, this, &CCPDF_TranslationWidget::opposeAutoTransLate);
+    connect(ui->btn_setAutoTrans, &QPushButton::clicked,
+            this, &CCPDF_TranslationWidget::opposeAutoTransLate);
+    registerAnimation();
 #endif
 }
 
@@ -41,6 +39,17 @@ CCPDF_TranslationWidget::~CCPDF_TranslationWidget()
 
 
 #ifdef SUPPORT_TRANSLATION
+
+static void __pvt_handleBtnTextTrans(QPushButton* btn, bool state)
+{
+    if(state)   btn->setText("自动翻译: 开");
+    else        btn->setText("自动翻译: 关");
+}
+
+static void __pvt_handle_input_text(QString& res){
+    res = res.remove("\n");
+}
+
 
 void CCPDF_TranslationWidget::opposeAutoTransLate()
 {
@@ -76,6 +85,7 @@ void CCPDF_TranslationWidget::setInput()
     QString inputPath = CCPDF_FileUtils::PathUtils::composePath(AtDir, inputName);
     CCPDF_FileUtils::FileUtils::createFileAnyWay(inputPath);
     QString res = ui->input_textEdit->toPlainText();
+    __pvt_handle_input_text(res);
     CCPDF_FileUtils::File_ReadWrite::writeFile(res, inputPath);
 }
 
@@ -112,9 +122,34 @@ void CCPDF_TranslationWidget::setEXE(const QString& res)
     }
 }
 
+void CCPDF_TranslationWidget::registerAnimation()
+{
+    visible_button_animation = std::make_unique<CCPDF_BinaryStateAnimations>();
+    visible_button_animation->bindObjectAndProperty(ui->widget_settings, "size");
+    visible_button_animation->setDuration(400);
+    QObject::connect(
+        visible_button_animation->getAnimation(),
+        &QPropertyAnimation::finished,
+        [this](){
+            settingVisiblity = !settingVisiblity;
+            ui->widget_settings->setVisible(settingVisiblity);
+    });
+}
+
+void CCPDF_TranslationWidget::resizeEvent(QResizeEvent* e[[maybe_unused]])
+{
+    QSize current_size = ui->widget_settings->size();
+    visible_button_animation->setBeginState(current_size);
+    visible_button_animation->setEndState(QSize(current_size.width(), 0));
+}
+
 void CCPDF_TranslationWidget::opposeVisiSettings(){
-    settingVisiblity = !settingVisiblity;
-    ui->widget_settings->setVisible(settingVisiblity);
+    if(settingVisiblity)
+        visible_button_animation->startAnimation(settingVisiblity);
+    else{
+        settingVisiblity = !settingVisiblity;
+        ui->widget_settings->setVisible(settingVisiblity);
+    }
     ui->btn_setSettingsVisible->setText(
         settingVisiblity ? "收起设置板" : "展开设置板"
     );
@@ -125,19 +160,13 @@ void CCPDF_TranslationWidget::registerOrUpdate()
 {
     if(histroyHolder)
     {
-        if(!histroyHolder->fetchAccordingType(_TRANSLATION))
-        {
-            auto p = new Plugin_ExeInfo;
-            p->PluginType = _TRANSLATION;
-            p->exe = exe;
-            p->readAt = outPut;
+        auto p = new Plugin_ExeInfo;
+        p->PluginType = _TRANSLATION;
+        p->exe = exe;
+        p->readAt = outPut;
+        if(!histroyHolder->fetchAccordingType(_TRANSLATION)){
             histroyHolder->addPluginConfig(p);
-        }
-        else{
-            auto p = new Plugin_ExeInfo;
-            p->PluginType = _TRANSLATION;
-            p->exe = exe;
-            p->readAt = outPut;
+        }else{
             histroyHolder->updateConfig(p);
             delete p;
         }
@@ -192,8 +221,6 @@ void CCPDF_TranslationWidget::on_btn_copyToClipBoard_clicked()
 {
     QApplication::clipboard()->setText(ui->result_textBrowser->toPlainText());
 }
-
-
 #endif
 
 

@@ -44,6 +44,7 @@ SOURCES += Core/CCPDFView_Loader/ccpdf_loader.cpp \
     Ui/ActionMonitor/KeyboardMonitor/keyboardmonitor.cpp \
     Ui/ActionMonitor/MouseMonitor/mousemonitor.cpp \
     Ui/ActionMonitor/eventhandlefunctor.cpp \
+    Ui/CCPDF_Animanations/ccpdf_animanations.cpp \
     Ui/CCPDF_BookLibraryManager/FileSystemModel/ccpdf_booklirabry_filesystemmodel.cpp \
     Ui/CCPDF_BookLibraryManager/ccpdf_booklibrarymanager.cpp \
     Ui/CCPDF_BookLibraryWidget/ccpdf_booklibrarywidget.cpp \
@@ -99,6 +100,7 @@ HEADERS += CCPDF_Global.h \
     Ui/ActionMonitor/KeyboardMonitor/keyboardmonitor.h \
     Ui/ActionMonitor/MouseMonitor/mousemonitor.h \
     Ui/ActionMonitor/eventhandlefunctor.h \
+    Ui/CCPDF_Animanations/ccpdf_animanations.h \
     Ui/CCPDF_BookLibraryManager/FileSystemModel/ccpdf_booklirabry_filesystemmodel.h \
     Ui/CCPDF_BookLibraryManager/ccpdf_booklibrarymanager.h \
     Ui/CCPDF_BookLibraryWidget/ccpdf_booklibrarywidget.h \

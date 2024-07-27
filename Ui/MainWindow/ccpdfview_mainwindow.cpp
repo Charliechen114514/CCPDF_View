@@ -31,8 +31,14 @@
 #include "CCPDF_LinkListWidgetManager/ccpdf_pdflinkwidgetmanager.h"
 #include "CCPDF_HelpWindow/ccpdf_helpwindow.h"
 #ifdef SUPPORT_TESS_OCR
-#include "Plugins/ocr/plugin_ocruimanager.h"
+#include "Plugins/OCR/plugin_ocruimanager.h"
 #endif
+
+static void __pvtHelpChangeIndex(QList<int>& sizes, int index, int new_size)
+{
+    if(index < 0 || index >= sizes.size()) return;
+    sizes[index] = new_size;
+}
 
 // ------------------------------------------------------
 //  Initialize
@@ -107,6 +113,7 @@ void CCPDFView_MainWindow::initCoreMemories()
     windowEventHelper = std::make_unique<WindowEventHelper>();
     histMenuHelper = std::make_unique<CCPDF_History_ActionHelper>();
     themeActionHelper = std::make_unique<CCPDF_ThemeActionHelper>();
+
 }
 
 void CCPDFView_MainWindow::initPluginMemory()
@@ -202,7 +209,6 @@ void CCPDFView_MainWindow::initHistoryMenuUi()
         connect(tmpAct, &CCPDF_HistoryAction::tellSelfPdfPath,
                 this, &CCPDFView_MainWindow::loadPDF);
     }
-
 }
 
 
@@ -240,14 +246,10 @@ void CCPDFView_MainWindow::initMenuConnections()
 
 void CCPDFView_MainWindow::initHyperWidget()
 {
-    initHW_PageNavigation();
     initHW_HistPage();
     initHW_BookLibrary();
 }
 
-void CCPDFView_MainWindow::initHW_PageNavigation()
-{
-}
 
 void CCPDFView_MainWindow::initHW_HistPage()
 {
@@ -310,6 +312,7 @@ void CCPDFView_MainWindow::activateAllPlugin()
 {
      pdfPlugins->activateAccordingToPluginHist();
 }
+
 
 void CCPDFView_MainWindow::registerKeyEvents()
 {
@@ -528,7 +531,7 @@ bool CCPDFView_MainWindow::setCurrentPageText()
         {
         case CCPDF_TextHelper::TextGetterHelperError::Error::NO_ERROR:
             pdfPlugins->setPluginInputFromOutWard(
-                ui->pdftextBrowser->toPlainText().remove("\n"),
+                ui->pdftextBrowser->toPlainText(),
                 CCPDF_ExternalPlugins::CurrentSupportPlugin::TRANSLATION);
             return true;
         case CCPDF_TextHelper::TextGetterHelperError::Error::NO_BIND_PDF:
@@ -758,11 +761,7 @@ void CCPDFView_MainWindow::handleMultiPageChange()
     updateOldRecord(pdfServer->current_widget());
 }
 
-static void __pvtHelpChangeIndex(QList<int>& sizes, int index, int new_size)
-{
-    if(index < 0 || index >= sizes.size()) return;
-    sizes[index] = new_size;
-}
+
 
 void CCPDFView_MainWindow::opposeHyperWidgetVisible()
 {
@@ -985,11 +984,6 @@ void CCPDFView_MainWindow::handleRemoveTheme(const QString name)
     setStyleSheet(themeHolder->getInUsedOne());
 }
 
-void CCPDFView_MainWindow::closeEvent(QCloseEvent* e[[maybe_unused]])
-{
-    qDebug() << "MainWindow closing, clearing the connections";
-}
-
 void CCPDFView_MainWindow::keyPressEvent(QKeyEvent* e)
 {
     windowEventHelper->setModifiers(e->modifiers(), WindowEventHelper::Monitor::Global);
@@ -1047,6 +1041,8 @@ void CCPDFView_MainWindow::dropEvent(QDropEvent* event)
     }
 }
 
+
+
 CCPDFView_MainWindow::~CCPDFView_MainWindow()
 {
     qDebug() << "MainWindow finish closing, is clearing buffers";
@@ -1082,5 +1078,5 @@ void CCPDFView_MainWindow::initPluginHistAndConfig()
 #endif
     pdfPlugins->pluginHist->setPluginInfo_LoggerPath(__DEF_PLUGIN_PDF_LOG);
     pdfPlugins->pluginHist->readPluginInfo_HistoricalRecord();
-}
+};
 

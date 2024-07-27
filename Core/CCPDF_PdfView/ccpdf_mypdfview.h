@@ -1,7 +1,6 @@
 #ifndef CCPDF_MYPDFVIEW_H
 #define CCPDF_MYPDFVIEW_H
 #include "CCPDF_GragRecorder/ccpdf_gragpointrecorder.h"
-#include "CCPDF_SelectionRecorder/ccpdf_selectionrecorder.h"
 #include <QPdfView>
 #include <QKeyEvent>
 class CCPDF_MyPDFView : public QPdfView
@@ -21,18 +20,9 @@ private:
     // Grags handle
     void    startRecordingDragging(QMouseEvent *e);
     void    doMakeGragging(QMouseEvent *e);
-    void    startRecordingSelection(QMouseEvent *e);
-    void    doMakeSelection(QMouseEvent *e);
-
-    bool    editMode{true};
-
     // For the Right Button Click
     CCPDF_GragPointRecorder     grab_recorder;
     QPair<int, int>             fromBeginScrollBarValue{0, 0};
-
-    CCPDF_SelectionRecorder     selection_recorder;
-    // for selections
-
 };
 
 #endif // CCPDF_MYPDFVIEW_H

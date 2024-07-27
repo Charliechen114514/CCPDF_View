@@ -128,7 +128,6 @@ public slots:
     __BIND_Ui_Widgets   void    routeToTranslate(){routeTo(PAGE_INDEX::TRANSLATE);}
     __BIND_Ui_Widgets   void    routeToLink(){routeTo(PAGE_INDEX::LINK);};
     __BIND_Ui_Widgets   void    routeToOCR(){routeTo(PAGE_INDEX::OCR_TEXT);}
-    void                        closeEvent(QCloseEvent*);
     void                        keyPressEvent(QKeyEvent*);
     void                        keyReleaseEvent(QKeyEvent*);
     void                        wheelEvent(QWheelEvent*);
@@ -176,7 +175,6 @@ private:
     void                            initMenuConnections();
     // init HyperWidegt
     void                            initHyperWidget();
-    void                            initHW_PageNavigation();
     void                            initHW_HistPage();
     void                            initHW_BookLibrary();
     // registerKeys And Mouses
