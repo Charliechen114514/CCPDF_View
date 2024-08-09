@@ -4,6 +4,11 @@
 
 CCPDFView_Seta is a concise lightweight PDF reader program that is currently in the testing phase.
 
+## Update 2 
+
+- attempts to support some animations 
+- command line launch of this PDF application: currently supports adding PDF list parameters to open PDF
+
 ## Update 1
 
 Updates:

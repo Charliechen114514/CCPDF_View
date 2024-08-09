@@ -23,6 +23,7 @@ INCLUDEPATH += \
     External
 
 SOURCES += Core/CCPDFView_Loader/ccpdf_loader.cpp \
+    Core/CCPDF_ArgPraser/ccpdf_argpraser.cpp \
     Core/CCPDF_GragRecorder/ccpdf_gragpointrecorder.cpp \
     Core/CCPDF_Historical/FileRecord/ccpdf_historicalrecordhelper.cpp \
     Core/CCPDF_Historical/Historical/historical_record.cpp \
@@ -37,7 +38,6 @@ SOURCES += Core/CCPDFView_Loader/ccpdf_loader.cpp \
     Core/CCPDF_Utils/ccpdf_fileutils.cpp \
     Core/CCPDF_Utils/ccpdf_messgaeboxutils.cpp \
     Core/CCPDF_ZoomController/ccpdf_zoomcontroller.cpp \
-    Debugging/Logger/ccpdf_logger.cpp \
     External/DLLSupport/CCPDF_DLLPluginImporter/ccpdf_externalplugin_externeldll_importer.cpp \
     External/External_Option_Compile/CCPDF_RunPluginProcess/ccpdf_runpluginprocess.cpp \
     External/ccpdf_externalplugins.cpp \
@@ -76,6 +76,7 @@ SOURCES += Core/CCPDFView_Loader/ccpdf_loader.cpp \
 HEADERS += CCPDF_Global.h \
     Core/CCPDFView_Loader/ccpdf_loader.h \
     Core/CCPDF_About/CCPDF_About.h \
+    Core/CCPDF_ArgPraser/ccpdf_argpraser.h \
     Core/CCPDF_Error_Helper/CCPDF_ErrorHelper.h \
     Core/CCPDF_GragRecorder/ccpdf_gragpointrecorder.h \
     Core/CCPDF_Historical/FileRecord/ccpdf_historicalrecordhelper.h \
@@ -92,7 +93,7 @@ HEADERS += CCPDF_Global.h \
     Core/CCPDF_Utils/ccpdf_fileutils.h \
     Core/CCPDF_Utils/ccpdf_messgaeboxutils.h \
     Core/CCPDF_ZoomController/ccpdf_zoomcontroller.h \
-    Debugging/Logger/ccpdf_logger.h \
+    Debugging/Debug/CCPDF_Debug_Options.h \
     External/CCPDF_Plugin_Supports.h \
     External/DLLSupport/CCPDF_DLLPluginImporter/ccpdf_externalplugin_externeldll_importer.h \
     External/External_Option_Compile/CCPDF_RunPluginProcess/ccpdf_runpluginprocess.h \
