@@ -141,15 +141,28 @@ FORMS += \
     Ui/Plugins/Translations/ccpdf_translationwidget.ui
 
 # Markings
+
+# COMPILE_SUPPORTS
+# CHECK_MEMORY: Check Memory leakage in Windows Platform
+# PURE_RELEASE: Disable QDebug, Only accessible in Release Mode
+# MULTI_PROCESS_COMPILE: MSVC Only, For Makefile Compiles set Makefile params
+
+DEFINES +=  \ # CHECK_MEMORY \
+            \ PURE_RELEASE \
+            \ MULTI_PROCESS_COMPILE
+
+
 # You can compile for your specifies
 # SUPPORT_TRANSLATION: Enable Translations Plugin Supports
 # SUPPORT_TESS_OCR: Support Tesseract OCR's Dynamic Loader, required TessractWrapper.dll
+# SUPPORT_SPEECHING: This is an Qt Internal Supports, You Can Enable it for TextToSpeech
+# Functionalitys
 
-
-DEFINES += \ # CHECK_MEMORY \
+DEFINES += \
            SUPPORT_TESS_OCR \
            SUPPORT_TRANSLATION \
-           PURE_RELEASE
+           SUPPORT_SPEECHING\
+
 
 
 DEFINES +=  __MAJOR_VERSION=1 \
@@ -162,7 +175,16 @@ CONFIG (release, debug|release) {
     }
 }
 
+contains(DEFINES, MULTI_PROCESS_COMPILE){
+contains(QMAKE_COMPILER, msvc){
+# MSVC USE /MP For MultiProcess Compile
+QMAKE_CXXFLAGS += /MP
+}
+}
+
+
 contains(DEFINES, SUPPORT_TESS_OCR){
+
 HEADERS +=  \
             External/Internal_Option_Compile/ocr/ccpdf_ocrtexthellper.hpp \
             External/Internal_Option_Compile/ocr/ocranalisishelper.h \
@@ -183,6 +205,25 @@ SOURCES +=  \
             External/External_Option_Compile/CCPDF_ExternTranslations/Translate/ccpdf_externtranslation.cpp \
 
 }
+
+contains(DEFINES, SUPPORT_SPEECHING){
+QT += texttospeech
+INCLUDEPATH += External/CCPDF_Speech
+
+HEADERS +=  External/CCPDF_Speech/Core/ccspeech_core.h \
+            External/CCPDF_Speech/Ui/speechwidgets.h \
+            External/CCPDF_Speech/Ui/ccspeech_uisettings.h
+
+SOURCES +=  External/CCPDF_Speech/Core/ccspeech_core.cpp \
+            External/CCPDF_Speech/Ui/speechwidgets.cpp \
+            External/CCPDF_Speech/Ui/ccspeech_uisettings.cpp
+
+FORMS +=    Ui/Plugins/Speech/ccspeech_uisettings.ui \
+            Ui/Plugins/Speech/speechwidgets.ui
+
+}
+
+
 
 # Documentations Install
 DEFINES += DocDir=\\\"./Documentation/\\\"
@@ -211,7 +252,8 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-DISTFILES +=
+
+
 
 RESOURCES += \
     resources/configs.qrc

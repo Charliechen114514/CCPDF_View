@@ -4,6 +4,13 @@
 
 CCPDFView_Seta is a concise lightweight PDF reader program that is currently in the testing phase.
 
+## Update 3
+
+- Support Optional Compile of Reading PDF, the Sources are from your Computer Default''s TTSs
+- Support Multi-Thread Compilitions for MSVC, for Makefile user, you can set threads cnt by offering -j params in project settings
+- More Tidy Codes by clang-format
+- Update Showing strings in TranslationWidget
+
 ## Update 2 
 
 - attempts to support some animations 
